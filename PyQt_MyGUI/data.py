@@ -30,7 +30,7 @@ class DataGrid(QWidget):
         # 添加数据库
         self.db = QSqlDatabase.addDatabase('QSQLITE')
         # 设置数据库名称
-        self.db.setDatabaseName('./db/database2.db')
+        self.db.setDatabaseName('./db/DataBase.db')
         # 判断是否打开
         if not self.db.open():
             return False
