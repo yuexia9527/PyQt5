@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>869</width>
+    <height>736</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>869</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>编辑</string>
+    </property>
+    <addaction name="action_start"/>
+    <addaction name="action_pause"/>
+    <addaction name="action_stop"/>
+    <addaction name="action_clean"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>显示</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>工具</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_start"/>
+   <addaction name="action_pause"/>
+   <addaction name="action_stop"/>
+   <addaction name="action_clean"/>
+  </widget>
+  <action name="action_start">
+   <property name="icon">
+    <iconset>
+     <normalon>F:/阿里巴巴矢量图标库/start.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>开始</string>
+   </property>
+   <property name="toolTip">
+    <string>start</string>
+   </property>
+  </action>
+  <action name="action_pause">
+   <property name="icon">
+    <iconset>
+     <normalon>F:/阿里巴巴矢量图标库/pause.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>暂停</string>
+   </property>
+   <property name="toolTip">
+    <string>pause</string>
+   </property>
+  </action>
+  <action name="action_stop">
+   <property name="icon">
+    <iconset>
+     <normalon>F:/阿里巴巴矢量图标库/stop.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>停止</string>
+   </property>
+   <property name="toolTip">
+    <string>stop</string>
+   </property>
+  </action>
+  <action name="action_clean">
+   <property name="icon">
+    <iconset>
+     <normaloff>F:/阿里巴巴矢量图标库/clear.png</normaloff>F:/阿里巴巴矢量图标库/clear.png</iconset>
+   </property>
+   <property name="text">
+    <string>清除</string>
+   </property>
+   <property name="toolTip">
+    <string>clean</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
