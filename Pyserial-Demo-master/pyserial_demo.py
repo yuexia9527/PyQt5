@@ -122,6 +122,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             input_Data = self.s3__send_text_4.toPlainText()  # 数据包的数据
             input_CheckSum = self.s3__send_text_5.toPlainText()  # 数据包校验位
             input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
+            # lalala
             if input_s != "":
                 # 非空字符串
                 if self.hex_send.isChecked():
