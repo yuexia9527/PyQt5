@@ -115,7 +115,13 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     # 发送数据
     def data_send(self):
         if self.ser.isOpen():
-            input_s = self.s3__send_text.toPlainText()
+            # 自定义输入端的数据包格式
+            input_Head = self.s3__send_text.toPlainText()  # 数据包头部
+            input_CMD = self.s3__send_text_2.toPlainText()  # 数据包CMD
+            input_Length = self.s3__send_text_3.toPlainText()  # 数据包的数据长度
+            input_Data = self.s3__send_text_4.toPlainText()  # 数据包的数据
+            input_CheckSum = self.s3__send_text_5.toPlainText()  # 数据包校验位
+            input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
             if input_s != "":
                 # 非空字符串
                 if self.hex_send.isChecked():
