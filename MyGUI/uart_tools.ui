@@ -292,7 +292,7 @@
     <property name="title">
      <string>接收设置</string>
     </property>
-    <widget class="QRadioButton" name="radioButton">
+    <widget class="QRadioButton" name="radioButton_recv_ascii">
      <property name="geometry">
       <rect>
        <x>11</x>
@@ -305,7 +305,7 @@
       <string>ASCII</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QRadioButton" name="radioButton_recv_hex">
      <property name="geometry">
       <rect>
        <x>89</x>
@@ -370,7 +370,7 @@
     <property name="title">
      <string>发送设置</string>
     </property>
-    <widget class="QRadioButton" name="radioButton_3">
+    <widget class="QRadioButton" name="radioButton_send_ascii">
      <property name="geometry">
       <rect>
        <x>11</x>
@@ -383,7 +383,7 @@
       <string>ASCII</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_4">
+    <widget class="QRadioButton" name="radioButton_send_hex">
      <property name="geometry">
       <rect>
        <x>85</x>

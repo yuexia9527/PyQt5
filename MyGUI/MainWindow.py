@@ -24,6 +24,13 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.action_stop.triggered.connect(self.action_stop_cb)
         self.action_clean.triggered.connect(self.action_clean_cb)
 
+        #初始化窗口
+        #设置左下角的状态栏显示以及设定相应的显示时间
+        self.statusbar.showMessage("status:ok",5000)
+
+
+        #初始化界面
+        self.radioButton_recv_ascii.setChecked(]=xs)
 
     def comboBox_baud_cb(self):
         content = self.comboBox_baud.currentText()
@@ -73,6 +80,7 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
     def action_clean_cb(self):
         print("you clicked action clean")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
