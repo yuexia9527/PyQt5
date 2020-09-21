@@ -39,7 +39,7 @@
       <string>串口</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="comboBox_uart">
      <property name="geometry">
       <rect>
        <x>73</x>
@@ -443,7 +443,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="textEdit_get">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -453,7 +453,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_send">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -533,6 +533,9 @@
    <property name="toolTip">
     <string>start</string>
    </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
   </action>
   <action name="action_pause">
    <property name="icon">
@@ -545,6 +548,9 @@
    </property>
    <property name="toolTip">
     <string>pause</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
    </property>
   </action>
   <action name="action_stop">
@@ -559,6 +565,9 @@
    <property name="toolTip">
     <string>stop</string>
    </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
   </action>
   <action name="action_clean">
    <property name="icon">
@@ -570,6 +579,9 @@
    </property>
    <property name="toolTip">
     <string>clean</string>
+   </property>
+   <property name="shortcut">
+    <string>F4</string>
    </property>
   </action>
  </widget>
