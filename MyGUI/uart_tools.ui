@@ -62,7 +62,7 @@
       <string>波特率</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="comboBox_baud">
      <property name="geometry">
       <rect>
        <x>73</x>
@@ -135,7 +135,7 @@
       <string>数据位</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_3">
+    <widget class="QComboBox" name="comboBox_databit">
      <property name="geometry">
       <rect>
        <x>73</x>
@@ -165,7 +165,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QComboBox" name="comboBox_4">
+    <widget class="QComboBox" name="comboBox_polarity">
      <property name="geometry">
       <rect>
        <x>73</x>
@@ -203,7 +203,7 @@
       <string>校验位</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_5">
+    <widget class="QComboBox" name="comboBox_stopbit">
      <property name="geometry">
       <rect>
        <x>73</x>
@@ -254,7 +254,7 @@
       <string>流控</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_11">
+    <widget class="QComboBox" name="comboBox_flow">
      <property name="geometry">
       <rect>
        <x>73</x>
