@@ -29,6 +29,14 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.radioButton_recv_hex.toggled.connect(self.radioButton_recv_hex_cb)
         self.radioButton_send_hex.toggled.connect(self.radioButton_send_hex_cb)
 
+        #默认勾选中自动换行功能
+        # self.checkBox_auto_line.setChecked(True)
+
+        self.checkBox_auto_line.toggled.connect(self.checkBox_auto_line_cb)
+        self.checkBox_show_send.toggled.connect(self.checkBox_show_send_cb)
+        self.checkBox_show_time.toggled.connect(self.checkBox_show_time_cb)
+        self.checkBox_repeat_send.toggled.connect(self.checkBox_repeat_send_cb)
+
         #初始化窗口
         #设置左下角的状态栏显示以及设定相应的显示时间
         self.statusbar.showMessage("status:ok",5000)
@@ -88,16 +96,28 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         print("you clicked action clean")
 
     def radioButton_recv_ascii_cb(self):
-        print("you selected radioButton recv_ascii")
+        print("you selected radioButton_recv_ascii")
 
     def radioButton_send_ascii_cb(self):
-        print("you selected radioButton send_ascii")
+        print("you selected radioButton_send_ascii")
 
     def radioButton_recv_hex_cb(self):
-        print("you selected radioButton recv_hex")
+        print("you selected radioButton_recv_hex")
 
     def radioButton_send_hex_cb(self):
-        print("you selected radioButton send_hex")
+        print("you selected radioButton_send_hex")
+
+    def checkBox_auto_line_cb(self):
+        print("you selected checkBox_auto_line")
+
+    def checkBox_show_send_cb(self):
+        print("you selected checkBox_show_send")
+
+    def checkBox_show_time_cb(self):
+        print("you selected checkBox_show_time")
+        
+    def checkBox_repeat_send_cb(self):
+        print("you selected checkBox_repeat_send")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
