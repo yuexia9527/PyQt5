@@ -1,7 +1,7 @@
 import sys
 import PyQt5.QtWidgets as qw
 from PyQt5.QtWidgets import QApplication, QMainWindow
-
+import PyQt5.QtCore as qc
 import ui_uart_tools
 
 
@@ -14,17 +14,30 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         # 设置左下角的状态栏显示以及设定相应的显示时间
         self.statusbar.showMessage("status:ok", 5000)
 
+        # 加载配置文件
+        self.settings = qc.QSettings("config.ini", qc.QSettings.IniFormat)
+        self.settings.setIniCodec("UTF-8")
+
+        self.config_uart_baud = self.settings.value("SETUP/UART_BAUD")
+        print("uart baud(string) is %s",self.config_uart_baud)
+
+        self.config_uart_baud = self.settings.value("SETUP/UART_BAUD", 0, type=int)
+        print("uart baud(int) is %d",self.config_uart_baud)
+
+
         # 初始化界面
         self.radioButton_recv_ascii.setChecked(True)
         self.radioButton_send_ascii.setChecked(True)
 
         # 设置重复发送的时间范围、初始时间和调整步长和循环设置
-        self.spinBox.setRange(100, 30000)
+        self.spinBox.setRange(100, 30*1000)
         self.spinBox.setValue(1000)
         self.spinBox.setSingleStep(100)
         self.spinBox.setWrapping(True)
 
         self.spinBox.valueChanged.connect(self.spinBox_cb)
+
+        self.comboBox_
 
         # 绑定信号与槽
         self.comboBox_baud.currentIndexChanged.connect(self.comboBox_baud_cb)  # 波特率
@@ -137,7 +150,7 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         print("you selected checkBox_repeat_send")
 
     def spinBox_cb(self, value):
-        print("current value is %d" % value)
+        print("current value is %d" % (value))
 
 
 if __name__ == "__main__":
