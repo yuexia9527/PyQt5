@@ -24,6 +24,11 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.action_stop.triggered.connect(self.action_stop_cb)
         self.action_clean.triggered.connect(self.action_clean_cb)
 
+        self.radioButton_recv_ascii.toggled.connect(self.radioButton_recv_ascii_cb)
+        self.radioButton_send_ascii.toggled.connect(self.radioButton_send_ascii_cb)
+        self.radioButton_recv_hex.toggled.connect(self.radioButton_recv_hex_cb)
+        self.radioButton_send_hex.toggled.connect(self.radioButton_send_hex_cb)
+
         #初始化窗口
         #设置左下角的状态栏显示以及设定相应的显示时间
         self.statusbar.showMessage("status:ok",5000)
@@ -82,6 +87,17 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
     def action_clean_cb(self):
         print("you clicked action clean")
 
+    def radioButton_recv_ascii_cb(self):
+        print("you selected radioButton recv_ascii")
+
+    def radioButton_send_ascii_cb(self):
+        print("you selected radioButton send_ascii")
+
+    def radioButton_recv_hex_cb(self):
+        print("you selected radioButton recv_hex")
+
+    def radioButton_send_hex_cb(self):
+        print("you selected radioButton send_hex")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
