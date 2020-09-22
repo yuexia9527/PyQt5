@@ -10,6 +10,22 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
 
+        # 初始化窗口
+        # 设置左下角的状态栏显示以及设定相应的显示时间
+        self.statusbar.showMessage("status:ok", 5000)
+
+        # 初始化界面
+        self.radioButton_recv_ascii.setChecked(True)
+        self.radioButton_send_ascii.setChecked(True)
+
+        # 设置重复发送的时间范围、初始时间和调整步长和循环设置
+        self.spinBox.setRange(100, 30000)
+        self.spinBox.setValue(1000)
+        self.spinBox.setSingleStep(100)
+        self.spinBox.setWrapping(True)
+
+        self.spinBox.valueChanged.connect(self.spinBox_cb)
+
         # 绑定信号与槽
         self.comboBox_baud.currentIndexChanged.connect(self.comboBox_baud_cb)  # 波特率
         self.comboBox_databit.currentIndexChanged.connect(self.comboBox_databit_cb)  # 数据位
@@ -36,17 +52,6 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.checkBox_show_send.toggled.connect(self.checkBox_show_send_cb)
         self.checkBox_show_time.toggled.connect(self.checkBox_show_time_cb)
         self.checkBox_repeat_send.toggled.connect(self.checkBox_repeat_send_cb)
-
-        # 初始化窗口
-        # 设置左下角的状态栏显示以及设定相应的显示时间
-        self.statusbar.showMessage("status:ok", 5000)
-
-        # 初始化界面
-        self.radioButton_recv_ascii.setChecked(True)
-        self.radioButton_send_ascii.setChecked(True)
-
-        self.spinBox.setRange(100,30000)
-
 
     def comboBox_baud_cb(self):
         content = self.comboBox_baud.currentText()
@@ -131,16 +136,21 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
     def checkBox_repeat_send_cb(self):
         print("you selected checkBox_repeat_send")
 
+    def spinBox_cb(self, value):
+        print("current value is %d" % value)
+
 
 if __name__ == "__main__":
-
     _oldExceptionCatch = sys.excepthook
+
+
     def _exceptionCatch(exceptionType, value, traceback):
         _oldExceptionCatch(exceptionType, value, traceback)
+
+
     # 由于Qt界面中的异常捕获不到
     # 把系统的全局异常获取函数进行重定向
     sys.excepthook = _exceptionCatch
-
 
     app = QApplication(sys.argv)
     mainWindow = myMainWindow()
