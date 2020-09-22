@@ -45,6 +45,9 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.radioButton_recv_ascii.setChecked(True)
         self.radioButton_send_ascii.setChecked(True)
 
+        self.spinBox.setRange(100,30000)
+
+
     def comboBox_baud_cb(self):
         content = self.comboBox_baud.currentText()
         print("combox's value is", content)

@@ -412,8 +412,8 @@
     <widget class="QSpinBox" name="spinBox">
      <property name="geometry">
       <rect>
-       <x>65</x>
-       <y>91</y>
+       <x>10</x>
+       <y>90</y>
        <width>91</width>
        <height>21</height>
       </rect>
@@ -422,14 +422,14 @@
     <widget class="QLabel" name="label_12">
      <property name="geometry">
       <rect>
-       <x>11</x>
-       <y>91</y>
-       <width>30</width>
+       <x>110</x>
+       <y>90</y>
+       <width>51</width>
        <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>时间</string>
+      <string>ms/次</string>
      </property>
     </widget>
    </widget>
