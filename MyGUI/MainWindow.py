@@ -11,11 +11,11 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.setupUi(self)
 
         # 绑定信号与槽
-        self.comboBox_baud.currentIndexChanged.connect(self.comboBox_baud_cb) #波特率
-        self.comboBox_databit.currentIndexChanged.connect(self.comboBox_databit_cb) #数据位
-        self.comboBox_polarity.currentIndexChanged.connect(self.comboBox_polarity_cb) #校验位
-        self.comboBox_stopbit.currentIndexChanged.connect(self.comboBox_stopbit_cb) #停止位
-        self.comboBox_flow.currentIndexChanged.connect(self.comboBox_flow_cb) #流控
+        self.comboBox_baud.currentIndexChanged.connect(self.comboBox_baud_cb)  # 波特率
+        self.comboBox_databit.currentIndexChanged.connect(self.comboBox_databit_cb)  # 数据位
+        self.comboBox_polarity.currentIndexChanged.connect(self.comboBox_polarity_cb)  # 校验位
+        self.comboBox_stopbit.currentIndexChanged.connect(self.comboBox_stopbit_cb)  # 停止位
+        self.comboBox_flow.currentIndexChanged.connect(self.comboBox_flow_cb)  # 流控
 
         self.btn_send.clicked.connect(self.btn_send_cb)
 
@@ -29,7 +29,7 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.radioButton_recv_hex.toggled.connect(self.radioButton_recv_hex_cb)
         self.radioButton_send_hex.toggled.connect(self.radioButton_send_hex_cb)
 
-        #默认勾选中自动换行功能
+        # 默认勾选中自动换行功能
         # self.checkBox_auto_line.setChecked(True)
 
         self.checkBox_auto_line.toggled.connect(self.checkBox_auto_line_cb)
@@ -37,12 +37,11 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.checkBox_show_time.toggled.connect(self.checkBox_show_time_cb)
         self.checkBox_repeat_send.toggled.connect(self.checkBox_repeat_send_cb)
 
-        #初始化窗口
-        #设置左下角的状态栏显示以及设定相应的显示时间
-        self.statusbar.showMessage("status:ok",5000)
+        # 初始化窗口
+        # 设置左下角的状态栏显示以及设定相应的显示时间
+        self.statusbar.showMessage("status:ok", 5000)
 
-
-        #初始化界面
+        # 初始化界面
         self.radioButton_recv_ascii.setChecked(True)
         self.radioButton_send_ascii.setChecked(True)
 
@@ -79,8 +78,8 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
     def btn_send_cb(self):
         print("you clicked btn_send.")
         text = self.textEdit_get.toPlainText()
-        print('text is',text)
-        #将内容加载到comboBox_uart的下拉选项中
+        print('text is', text)
+        # 将内容加载到comboBox_uart的下拉选项中
         self.comboBox_uart.addItem(text)
 
     def action_start_cb(self):
@@ -109,6 +108,14 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
     def checkBox_auto_line_cb(self):
         print("you selected checkBox_auto_line")
+        res_auto_line = self.checkBox_auto_line_isChecked()
+        print("res_auto_line is ", res_auto_line)
+        res_show_send = self.checkBox_show_send_isChecked()
+        print("res_show_send is ", res_show_send)
+        res_show_time = self.checkBox_show_time_isChecked()
+        print("res_show_time is ", res_show_time)
+        res_repeat_send = self.checkBox_repeat_send_isChecked()
+        print("res_repeat_send is ", res_repeat_send)
 
     def checkBox_show_send_cb(self):
         print("you selected checkBox_show_send")
@@ -118,6 +125,7 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
     def checkBox_repeat_send_cb(self):
         print("you selected checkBox_repeat_send")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
