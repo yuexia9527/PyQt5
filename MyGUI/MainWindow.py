@@ -108,14 +108,14 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
     def checkBox_auto_line_cb(self):
         print("you selected checkBox_auto_line")
-        res_auto_line = self.checkBox_auto_line_isChecked()
-        print("res_auto_line is", res_auto_line)
-        res_show_send = self.checkBox_show_send_isChecked()
-        print("res_show_send is", res_show_send)
-        res_show_time = self.checkBox_show_time_isChecked()
-        print("res_show_time is", res_show_time)
-        res_repeat_send = self.checkBox_repeat_send_isChecked()
-        print("res_repeat_send is", res_repeat_send)
+        # res_auto_line = self.checkBox_auto_line_isChecked()
+        # print("res_auto_line is", res_auto_line)
+        # res_show_send = self.checkBox_show_send_isChecked()
+        # print("res_show_send is", res_show_send)
+        # res_show_time = self.checkBox_show_time_isChecked()
+        # print("res_show_time is", res_show_time)
+        # res_repeat_send = self.checkBox_repeat_send_isChecked()
+        # print("res_repeat_send is", res_repeat_send)
 
     def checkBox_show_send_cb(self):
         print("you selected checkBox_show_send")
@@ -125,9 +125,19 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
     def checkBox_repeat_send_cb(self):
         print("you selected checkBox_repeat_send")
-
+        res_repeat_send = self.checkBox_repeat_send_isChecked()
+        print("res_repeat_send is", res_repeat_send)
 
 if __name__ == "__main__":
+
+    _oldExceptionCatch = sys.excepthook
+    def _exceptionCatch(exceptionType, value, traceback):
+        _oldExceptionCatch(exceptionType, value, traceback)
+    # 由于Qt界面中的异常捕获不到
+    # 把系统的全局异常获取函数进行重定向
+    sys.excepthook = _exceptionCatch
+
+
     app = QApplication(sys.argv)
     mainWindow = myMainWindow()
     mainWindow.show()
