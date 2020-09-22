@@ -318,7 +318,7 @@
       <string>HEX</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="checkBox_auto_line">
      <property name="geometry">
       <rect>
        <x>11</x>
@@ -331,7 +331,7 @@
       <string>自动换行</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="checkBox_show_send">
      <property name="geometry">
       <rect>
        <x>11</x>
@@ -344,7 +344,7 @@
       <string>显示发送</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_3">
+    <widget class="QCheckBox" name="checkBox_show_time">
      <property name="geometry">
       <rect>
        <x>11</x>
