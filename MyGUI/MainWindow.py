@@ -109,13 +109,13 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
     def checkBox_auto_line_cb(self):
         print("you selected checkBox_auto_line")
         res_auto_line = self.checkBox_auto_line_isChecked()
-        print("res_auto_line is ", res_auto_line)
+        print("res_auto_line is", res_auto_line)
         res_show_send = self.checkBox_show_send_isChecked()
-        print("res_show_send is ", res_show_send)
+        print("res_show_send is", res_show_send)
         res_show_time = self.checkBox_show_time_isChecked()
-        print("res_show_time is ", res_show_time)
+        print("res_show_time is", res_show_time)
         res_repeat_send = self.checkBox_repeat_send_isChecked()
-        print("res_repeat_send is ", res_repeat_send)
+        print("res_repeat_send is", res_repeat_send)
 
     def checkBox_show_send_cb(self):
         print("you selected checkBox_show_send")
