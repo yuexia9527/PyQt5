@@ -30,7 +30,8 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
 
         #初始化界面
-        self.radioButton_recv_ascii.setChecked(]=xs)
+        self.radioButton_recv_ascii.setChecked(True)
+        self.radioButton_send_ascii.setChecked(True)
 
     def comboBox_baud_cb(self):
         content = self.comboBox_baud.currentText()
