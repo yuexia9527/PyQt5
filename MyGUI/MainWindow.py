@@ -19,25 +19,24 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.settings.setIniCodec("UTF-8")
 
         self.config_uart_baud = self.settings.value("SETUP/UART_BAUD")
-        print("uart baud(string) is %s",self.config_uart_baud)
+        print("uart baud(string) is %s", self.config_uart_baud)
 
         self.config_uart_baud = self.settings.value("SETUP/UART_BAUD", 0, type=int)
-        print("uart baud(int) is %d",self.config_uart_baud)
-
+        print("uart baud(int) is %d", self.config_uart_baud)
 
         # 初始化界面
         self.radioButton_recv_ascii.setChecked(True)
         self.radioButton_send_ascii.setChecked(True)
 
         # 设置重复发送的时间范围、初始时间和调整步长和循环设置
-        self.spinBox.setRange(100, 30*1000)
+        self.spinBox.setRange(100, 30 * 1000)
         self.spinBox.setValue(1000)
         self.spinBox.setSingleStep(100)
         self.spinBox.setWrapping(True)
 
         self.spinBox.valueChanged.connect(self.spinBox_cb)
 
-        self.comboBox_
+        self.comboBox_baud.setCurrentText(str(self.config_uart_baud))
 
         # 绑定信号与槽
         self.comboBox_baud.currentIndexChanged.connect(self.comboBox_baud_cb)  # 波特率
@@ -98,10 +97,15 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
     def btn_send_cb(self):
         print("you clicked btn_send.")
-        text = self.textEdit_get.toPlainText()
-        print('text is', text)
-        # 将内容加载到comboBox_uart的下拉选项中
-        self.comboBox_uart.addItem(text)
+        # text = self.textEdit_get.toPlainText()
+        # print('text is', text)
+        # # 将内容加载到comboBox_uart的下拉选项中
+        # self.comboBox_uart.addItem(text)
+
+        # 测试QSettings写入功能
+        uart_baud = self.comboBox_baud.currentText()
+        print("current uart baud is", uart_baud)
+        self.settings.setValue("SETUP/UART_BAUD", uart_baud)
 
     def action_start_cb(self):
         print("you clicked action start")
