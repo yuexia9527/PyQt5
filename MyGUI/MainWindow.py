@@ -115,7 +115,7 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
     def checkBox_show_time_cb(self):
         print("you selected checkBox_show_time")
-        
+
     def checkBox_repeat_send_cb(self):
         print("you selected checkBox_repeat_send")
 
