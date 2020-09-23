@@ -105,7 +105,7 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         # 测试QSettings写入功能
         uart_baud = self.comboBox_baud.currentText()
         print("current uart baud is", uart_baud)
-        self.settings.setValue("SETUP/UART_BAUD", uart_baud)
+        self.settings.setValue("SETUP/UART_BAUD", int(uart_baud))
 
     def action_start_cb(self):
         print("you clicked action start")
