@@ -102,6 +102,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             self.ser.close()
         except:
             pass
+
         self.open_button.setEnabled(True)
         self.close_button.setEnabled(False)
         self.lineEdit_3.setEnabled(True)
@@ -117,16 +118,40 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         if self.ser.isOpen():
             # 自定义输入端的数据包格式
             input_Head = self.s3__send_text.toPlainText()  # 数据包头部
-            print(input_Head)
             input_CMD = self.s3__send_text_2.toPlainText()  # 数据包CMD
-            print(input_CMD)
             input_Length = self.s3__send_text_3.toPlainText()  # 数据包的数据长度
-            print(input_Length)
+
             input_Data = self.s3__send_text_4.toPlainText()  # 数据包的数据
-            print(input_Data)
-            input_CheckSum = self.s3__send_text_5.toPlainText()  # 数据包校验位
-            print(input_CheckSum)
+            if input_Data != "":
+                input_Data = input_Data.strip()
+                send_data = []
+                while input_Data != '':
+                    try:
+                        #将input_Data数据没两个字符拿出，并转换成int类型的数据
+                        input_num = int(input_Data[0:2])
+                    except ValueError:
+                        QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
+                        return None
+                    #将拿出的字符切片
+                    input_Data = input_Data[2:].strip()
+                    #将数据按顺序放入列表中
+                    send_data.append(input_num)
+                input_Data = send_data
+            else:
+                pass
+            #校验位置零,校验位为输入数据的总和
+            input_CheckSum = 0
+            for i in range(0,len(input_Data)):
+                input_CheckSum = input_CheckSum + input_Data[i]
+            input_CheckSum = str(input_CheckSum)
+
+            #将input_Data由列表转换为字符串
+            input_Data_s = [str(i) for i in input_Data]
+            input_Data = ''.join(input_Data_s)
+
+            # 数据包校验位
             input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
+            print(input_s)
             if input_s != "":
                 # 非空字符串
                 if self.hex_send.isChecked():
@@ -197,12 +222,26 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     # 清除显示
     def send_data_clear(self):
         self.s3__send_text.setText("")
+        self.s3__send_text_2.setText("")
+        self.s3__send_text_3.setText("")
+        self.s3__send_text_4.setText("")
+        self.s3__send_text_5.setText("")
+
 
     def receive_data_clear(self):
         self.s2__receive_text.setText("")
 
 
 if __name__ == '__main__':
+
+    _oldExceptionCatch = sys.excepthook
+    def _exceptionCatch(exceptionType, value, traceback):
+        _oldExceptionCatch(exceptionType, value, traceback)
+    # 由于Qt界面中的异常捕获不到
+    # 把系统的全局异常获取函数进行重定向
+    sys.excepthook = _exceptionCatch
+
+
     app = QtWidgets.QApplication(sys.argv)
     myshow = Pyqt5_Serial()
     myshow.show()
