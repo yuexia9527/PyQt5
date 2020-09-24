@@ -5,7 +5,6 @@ import PyQt5.QtCore as qc
 import ui_uart_tools
 from tool import Tool
 
-
 class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
     signal_recv_data = qc.pyqtSignal(str)
 
