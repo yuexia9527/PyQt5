@@ -3,6 +3,7 @@ import PyQt5.QtWidgets as qw
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import PyQt5.QtCore as qc
 import ui_uart_tools
+from tool import Tool
 
 
 class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
@@ -20,6 +21,7 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
 
         self.config_uart_baud = self.settings.value("SETUP/UART_BAUD")
         print("uart baud(string) is %s", self.config_uart_baud)
+        self.uart_port = "COM3"
 
         self.config_uart_baud = self.settings.value("SETUP/UART_BAUD", 0, type=int)
         print("uart baud(int) is %d", self.config_uart_baud)
@@ -65,11 +67,21 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.checkBox_show_time.toggled.connect(self.checkBox_show_time_cb)
         self.checkBox_repeat_send.toggled.connect(self.checkBox_repeat_send_cb)
 
+        # 实例化Tool
+        self.tool = Tool(self)
+
     def comboBox_baud_cb(self):
         content = self.comboBox_baud.currentText()
         print("combox's value is", content)
         text = "您当前选中了%s" % content
         qw.QMessageBox.information(self, "提示", text, qw.QMessageBox.Cancel | qw.QMessageBox.Ok)
+
+    def btn_send_cb(self):
+        print("you clicked btn_send")
+        send_data = self.textEdit_get.toPlainText()
+        self.tool.uart.send_uart_data(send_data)
+
+
 
     def comboBox_databit_cb(self):
         content = self.comboBox_databit.currentText()
