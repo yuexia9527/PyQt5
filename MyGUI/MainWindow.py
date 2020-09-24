@@ -7,6 +7,11 @@ from tool import Tool
 
 
 class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
+    signal_recv_data = qc.pyqtSignal(str)
+
+    # signal_recv_data1 = qc.pyqtSignal(int)
+    # signal_recv_data2 = qc.pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -36,8 +41,6 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.spinBox.setSingleStep(100)
         self.spinBox.setWrapping(True)
 
-        self.spinBox.valueChanged.connect(self.spinBox_cb)
-
         self.comboBox_baud.setCurrentText(str(self.config_uart_baud))
 
         # 绑定信号与槽
@@ -59,6 +62,12 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         self.radioButton_recv_hex.toggled.connect(self.radioButton_recv_hex_cb)
         self.radioButton_send_hex.toggled.connect(self.radioButton_send_hex_cb)
 
+        self.spinBox.valueChanged.connect(self.spinBox_cb)
+
+        # 自定义信号
+        # self.signal_recv_data1.connect(self.textBrowser_show_data_cb1)
+        # self.signal_recv_data2.connect(self.textBrowser_show_data_cb2)
+
         # 默认勾选中自动换行功能
         # self.checkBox_auto_line.setChecked(True)
 
@@ -70,6 +79,18 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         # 实例化Tool
         self.tool = Tool(self)
 
+    def textBrowser_show_data_cb(self, index, data):
+        self.textBrowser.insertPlainText(data)
+        cursor = self.textBrowser.textCursor().End
+        self.textBrowser.moveCursor(cursor)
+        # print("signal data is %s, index is %d" % (data, index))
+
+    # def textBrowser_show_data_cb1(self, data):
+    #     print("signal1 data is %d" % data)
+    #
+    # def textBrowser_show_data_cb2(self):
+    #     print("signal2 coming...")
+
     def comboBox_baud_cb(self):
         content = self.comboBox_baud.currentText()
         print("combox's value is", content)
@@ -80,8 +101,6 @@ class myMainWindow(QMainWindow, ui_uart_tools.Ui_MainWindow):
         print("you clicked btn_send")
         send_data = self.textEdit_get.toPlainText()
         self.tool.uart.send_uart_data(send_data)
-
-
 
     def comboBox_databit_cb(self):
         content = self.comboBox_databit.currentText()

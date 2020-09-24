@@ -21,7 +21,11 @@ class Uart(object):
         while (True):
             try:
                 recv_data_raw = self.serial.readline()
-                data = "DEVICE---->PC:" + recv_data_raw.decode()
+                data = recv_data_raw.decode()
+                if self.queue_recv.full():
+                    self.queue_recv.get()
+                self.queue_recv.put(data)
+                data = "DEVICE---->PC:" + data
                 print(data)
             except:
                 print("receive data error")
@@ -36,6 +40,17 @@ class Uart(object):
 
     def uart_close(self):
         self.serial.close()
+
+    def flush_queue_recv(self):
+        while not self.queue_recv.empty():
+            self.queue_recv.get()
+
+    def is_queue_recv_empty(self):
+        return self.queue_recv.empty()
+
+    def get_queue_recv(self):
+        return self.queue_recv.get()
+
 
 
 # if __name__ == '__main__':
