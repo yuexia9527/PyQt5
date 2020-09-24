@@ -149,31 +149,35 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             input_Data_s = [str(i) for i in input_Data]
             input_Data = ''.join(input_Data_s)
 
-            # 数据包校验位
-            input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
-            print(input_s)
-            if input_s != "":
-                # 非空字符串
-                if self.hex_send.isChecked():
-                    # hex发送
-                    input_s = input_s.strip()
-                    send_list = []
-                    while input_s != '':
-                        try:
-                            num = int(input_s[0:2], 16)
-                        except ValueError:
-                            QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
-                            return None
-                        input_s = input_s[2:].strip()
-                        send_list.append(num)
-                    input_s = bytes(send_list)
-                else:
-                    # ascii发送
-                    input_s = (input_s + '\r\n').encode('utf-8')
+            #输入数据求总
+            if (int(input_Length)+1)  == len(input_Data)+2:
+                input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
+                print(input_s)
+                if input_s != "":
+                    # 非空字符串
+                    if self.hex_send.isChecked():
+                        # hex发送
+                        input_s = input_s.strip()
+                        send_list = []
+                        while input_s != '':
+                            try:
+                                num = int(input_s[0:2], 16)
+                            except ValueError:
+                                QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
+                                return None
+                            input_s = input_s[2:].strip()
+                            send_list.append(num)
+                        input_s = bytes(send_list)
+                    else:
+                        # ascii发送
+                        input_s = (input_s + '\r\n').encode('utf-8')
 
-                num = self.ser.write(input_s)
-                self.data_num_sended += num
-                self.lineEdit_2.setText(str(self.data_num_sended))
+                    num = self.ser.write(input_s)
+                    self.data_num_sended += num
+                    self.lineEdit_2.setText(str(self.data_num_sended))
+
+            else:
+                print("the data_length is no available")
         else:
             pass
 
