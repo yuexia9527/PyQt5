@@ -155,11 +155,17 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
                     input_Data = send_data
             else:
                 pass
+
             #校验位置零,校验位为输入数据的总和
             input_CheckSum = 0
             for i in range(0,len(input_Data)):
                 input_CheckSum = input_CheckSum + input_Data[i]
-            input_CheckSum = str(input_CheckSum)
+            if self.hex_send.isChecked():
+                input_CheckSum = str(hex(input_CheckSum))
+                input_CheckSum = input_CheckSum[2:]
+            else:
+                input_CheckSum = str(input_CheckSum)
+
 
             #将校验和清除并更新显示
             self.s3__send_text_5.setText("")
