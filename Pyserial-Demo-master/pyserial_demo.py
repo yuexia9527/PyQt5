@@ -122,63 +122,87 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             input_Length = self.s3__send_text_3.toPlainText()  # 数据包的数据长度
 
             input_Data = self.s3__send_text_4.toPlainText()  # 数据包的数据
-            input_CheckSum = self.s3__send_text_5.toPlainText() #数据包的校验位
-            # if input_Data != "":
-            #     input_Data = input_Data.strip()
-            #     send_data = []
-            #     while input_Data != '':
-            #         try:
-            #             #将input_Data数据没两个字符拿出，并转换成int类型的数据
-            #             input_num = int(input_Data[0:2])
-            #         except ValueError:
-            #             QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
-            #             return None
-            #         #将拿出的字符切片
-            #         input_Data = input_Data[2:].strip()
-            #         #将数据按顺序放入列表中
-            #         send_data.append(input_num)
-            #     input_Data = send_data
-            # else:
-            #     pass
-            # #校验位置零,校验位为输入数据的总和
-            # input_CheckSum = 0
-            # for i in range(0,len(input_Data)):
-            #     input_CheckSum = input_CheckSum + input_Data[i]
-            # input_CheckSum = str(input_CheckSum)
-            #
-            # #将input_Data由列表转换为字符串
-            # input_Data_s = [str(i) for i in input_Data]
-            # input_Data = ''.join(input_Data_s)
-            #
-            # #输入数据求总和为校验位数值
-            # if (int(input_Length)+1)  == len(input_Data)+2:
-            input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
-            print(input_s)
-            if input_s != "":
-                # 非空字符串
+            if input_Data != "":
                 if self.hex_send.isChecked():
-                    # hex发送
-                    input_s = input_s.strip()
-                    send_list = []
-                    while input_s != '':
+                    input_Data = input_Data.strip()
+                    send_data = []
+                    while input_Data != '':
                         try:
-                            num = int(input_s[0:2], 16)
+                            #将input_Data数据没两个字符拿出，并转换成int类型的数据
+                            input_num = int(input_Data[0:2],16)
                         except ValueError:
                             QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
                             return None
-                        input_s = input_s[2:].strip()
-                        send_list.append(num)
-                    input_s = bytes(send_list)
+                        #将拿出的字符切片
+                        input_Data = input_Data[2:].strip()
+                        #将数据按顺序放入列表中
+                        send_data.append(input_num)
+                    input_Data = bytes(send_data)
                 else:
-                    # ascii发送
-                    input_s = (input_s + '\r\n').encode('utf-8')
+                    input_Data = input_Data.strip()
+                    send_data = []
+                    while input_Data != '':
+                        try:
+                            # 将input_Data数据没两个字符拿出，并转换成int类型的数据
+                            input_num = int(input_Data[0:2])
+                        except ValueError:
+                            QMessageBox.critical(self, 'wrong data', '请输入十进制数据，以空格分开!')
+                            return None
+                        # 将拿出的字符切片
+                        input_Data = input_Data[2:].strip()
+                        # 将数据按顺序放入列表中
+                        send_data.append(input_num)
+                    input_Data = send_data
+            else:
+                pass
+            #校验位置零,校验位为输入数据的总和
+            input_CheckSum = 0
+            for i in range(0,len(input_Data)):
+                input_CheckSum = input_CheckSum + input_Data[i]
+            input_CheckSum = str(input_CheckSum)
 
-                num = self.ser.write(input_s)
-                self.data_num_sended += num
-                self.lineEdit_2.setText(str(self.data_num_sended))
+            #将校验和清除并更新显示
+            self.s3__send_text_5.setText("")
+            self.s3__send_text_5.insertPlainText(input_CheckSum)
 
-            # else:
-            #     print("the data_length is no available")
+            print(int(input_Length))
+            print(len(input_Data))
+
+            #输入数据求总和为校验位数值
+            if (int(input_Length))  == len(input_Data)+2:
+
+                # 将input_Data由列表转换为字符串
+                input_Data_s = [str(i) for i in input_Data]
+                input_Data = ''.join(input_Data_s)
+
+                input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
+                print(input_s)
+
+                if input_s != "":
+                    # 非空字符串
+                    if self.hex_send.isChecked():
+                        # hex发送
+                        input_s = input_s.strip()
+                        send_list = []
+                        while input_s != '':
+                            try:
+                                num = int(input_s[0:2], 16)
+                            except ValueError:
+                                QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
+                                return None
+                            input_s = input_s[2:].strip()
+                            send_list.append(num)
+                        input_s = bytes(send_list)
+                    else:
+                        # ascii发送
+                        input_s = (input_s + '\r\n').encode('utf-8')
+
+                    num = self.ser.write(input_s)
+                    self.data_num_sended += num
+                    self.lineEdit_2.setText(str(self.data_num_sended))
+
+            else:
+                print("the data_length is no available")
         else:
             pass
 
