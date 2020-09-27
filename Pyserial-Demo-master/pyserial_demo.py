@@ -202,7 +202,8 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
                     self.lineEdit_2.setText(str(self.data_num_sended))
 
             else:
-                print("the data_length is no available")
+                text = "当前发送的数据长度与Data_Length不匹配。"
+                QtWidgets.QMessageBox.information(self, "提示", text, QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.Ok)
         else:
             pass
 
