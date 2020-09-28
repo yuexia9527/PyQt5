@@ -1,6 +1,7 @@
 import sys
 import serial
 import serial.tools.list_ports
+from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer
@@ -12,7 +13,7 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
         super(Pyqt5_Serial, self).__init__()
         self.setupUi(self)
         self.init()
-        self.setWindowTitle("月下串口助手")
+        self.setWindowTitle("月下串口调试助手")
         self.ser = serial.Serial()
         self.port_check()
 
@@ -27,6 +28,9 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
         self.hex_receive.setChecked(True)
 
     def init(self):
+
+        #设置主窗口图标
+        self.setWindowIcon(QtGui.QIcon('./images/11.ico'))
         # 串口检测按钮
         self.s1__box_1.clicked.connect(self.port_check)
 
@@ -34,9 +38,11 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
         self.s1__box_2.currentTextChanged.connect(self.port_imf)
 
         # 打开串口按钮
+        self.action_start.triggered.connect(self.port_open)
         self.open_button.clicked.connect(self.port_open)
 
         # 关闭串口按钮
+        self.action_close.triggered.connect(self.port_close)
         self.close_button.clicked.connect(self.port_close)
 
         # 发送数据按钮
@@ -52,10 +58,12 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.data_receive)
 
         # 清除发送窗口
-        self.s3__clear_button.clicked.connect(self.send_data_clear)
+        self.action_clear_send.triggered.connect(self.send_data_clear)
+        # self.s3__clear_button.clicked.connect(self.send_data_clear)
 
         # 清除接收窗口
-        self.s2__clear_button.clicked.connect(self.receive_data_clear)
+        self.action_clear_receive.triggered.connect(self.receive_data_clear)
+        # self.s2__clear_button.clicked.connect(self.receive_data_clear)
 
     # 串口检测
     def port_check(self):

@@ -7,25 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>893</width>
-    <height>837</height>
+    <height>793</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <property name="iconSize">
-   <size>
-    <width>30</width>
-    <height>30</height>
-   </size>
-  </property>
   <widget class="QWidget" name="Form">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>511</x>
       <y>654</y>
-      <width>221</width>
+      <width>271</width>
       <height>61</height>
      </rect>
     </property>
@@ -48,7 +42,7 @@
     <widget class="QLabel" name="dw">
      <property name="geometry">
       <rect>
-       <x>172</x>
+       <x>219</x>
        <y>26</y>
        <width>51</width>
        <height>16</height>
@@ -61,9 +55,9 @@
     <widget class="QLineEdit" name="lineEdit_3">
      <property name="geometry">
       <rect>
-       <x>102</x>
+       <x>109</x>
        <y>24</y>
-       <width>61</width>
+       <width>101</width>
        <height>21</height>
       </rect>
      </property>
@@ -80,7 +74,7 @@
      <rect>
       <x>0</x>
       <y>654</y>
-      <width>351</width>
+      <width>281</width>
       <height>61</height>
      </rect>
     </property>
@@ -88,54 +82,23 @@
      <string>串口状态</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="4">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>已发送：</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-     <item row="0" column="5">
       <widget class="QLineEdit" name="lineEdit_2"/>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>已接收：</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="open_button">
-       <property name="icon">
-        <iconset>
-         <normaloff>images/对.png</normaloff>images/对.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="close_button">
+      <widget class="QLineEdit" name="lineEdit"/>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>images/错误.png</normaloff>images/错误.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
+        <string>已发送：</string>
        </property>
       </widget>
      </item>
@@ -144,9 +107,9 @@
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>280</x>
       <y>654</y>
-      <width>101</width>
+      <width>231</width>
       <height>61</height>
      </rect>
     </property>
@@ -161,15 +124,22 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="s2__clear_button">
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QGroupBox" name="verticalGroupBox_2">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>422</y>
+      <x>510</x>
+      <y>412</y>
       <width>271</width>
-      <height>221</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="title">
@@ -268,11 +238,37 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="close_button">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>282</y>
+      <width>81</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关闭串口</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="open_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>282</y>
+      <width>81</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打开串口</string>
+    </property>
+   </widget>
    <widget class="QGroupBox" name="formGroupBox">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>11</y>
+      <y>43</y>
       <width>181</width>
       <height>231</height>
      </rect>
@@ -450,16 +446,23 @@ p, li { white-space: pre-wrap; }
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>654</y>
+      <x>780</x>
+      <y>594</y>
       <width>111</width>
-      <height>61</height>
+      <height>121</height>
      </rect>
     </property>
     <property name="title">
      <string>发送区控制</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_4">
+     <item row="1" column="1">
+      <widget class="QPushButton" name="s3__clear_button">
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="1">
       <widget class="QCheckBox" name="hex_send">
        <property name="text">
@@ -473,9 +476,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>422</y>
-      <width>611</width>
-      <height>221</height>
+      <y>412</y>
+      <width>511</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="title">
@@ -510,31 +513,21 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="s3__send_button">
     <property name="geometry">
      <rect>
-      <x>791</x>
-      <y>654</y>
+      <x>790</x>
+      <y>500</y>
       <width>91</width>
-      <height>61</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>images/send.png</normaloff>images/send.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>40</width>
-      <height>40</height>
-     </size>
+     <string>发送</string>
     </property>
    </widget>
    <widget class="QLabel" name="state_label">
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>710</y>
+      <y>0</y>
       <width>431</width>
       <height>31</height>
      </rect>
