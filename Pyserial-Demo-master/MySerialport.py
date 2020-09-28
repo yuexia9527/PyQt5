@@ -134,6 +134,7 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
 
             input_Data = self.s3__send_Data.toPlainText()  # 数据包的数据
             if input_Data != "":
+                input_Data_str = input_Data
                 if self.hex_send.isChecked():
                     input_Data = input_Data.strip()
                     send_data = []
@@ -177,10 +178,8 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
             for i in range(0,len(input_Data)):
                 input_CheckSum = input_CheckSum + input_Data[i]
             if self.hex_send.isChecked():
-                
-                # 将input_Data由列表转换为字符串
-                input_Data_s = [str(i) for i in input_Data]
-                input_Data = ''.join(input_Data_s)
+                # 祛除十六进制的数据字符串中的空格
+                input_Data = input_Data_str.replace(" ", "")
 
                 input_CheckSum = str(hex(input_CheckSum))
                 input_CheckSum = input_CheckSum[2:]
