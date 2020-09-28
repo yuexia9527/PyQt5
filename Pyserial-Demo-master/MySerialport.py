@@ -175,7 +175,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             print(len(input_Data))
 
             #输入数据求总和为校验位数值
-            if (int(input_Length))  == len(input_Data)+2:
+            if (int(input_Length))  == len(input_Data):
 
                 # 将input_Data由列表转换为字符串
                 input_Data_s = [str(i) for i in input_Data]
