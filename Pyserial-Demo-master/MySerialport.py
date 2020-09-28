@@ -4,15 +4,15 @@ import serial.tools.list_ports
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer
-from ui_demo_1 import Ui_Form
+from ui_demo_1 import Ui_MainWindow
 
 
-class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
+class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(Pyqt5_Serial, self).__init__()
         self.setupUi(self)
         self.init()
-        self.setWindowTitle("串口小助手")
+        self.setWindowTitle("月下串口助手")
         self.ser = serial.Serial()
         self.port_check()
 
@@ -96,7 +96,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         if self.ser.isOpen():
             self.open_button.setEnabled(False)
             self.close_button.setEnabled(True)
-            self.formGroupBox1.setTitle("串口状态（已开启）")
+            self.formGroupBox_1.setTitle("串口状态（已开启）")
 
     # 关闭串口
     def port_close(self):
@@ -115,7 +115,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.lineEdit.setText(str(self.data_num_received))
         self.data_num_sended = 0
         self.lineEdit_2.setText(str(self.data_num_sended))
-        self.formGroupBox1.setTitle("串口状态（已关闭）")
+        self.formGroupBox_1.setTitle("串口状态（已关闭）")
 
     # 发送数据
     def data_send(self):
