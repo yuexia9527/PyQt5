@@ -22,6 +22,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.data_num_sended = 0
         self.lineEdit_2.setText(str(self.data_num_sended))
 
+        # 默认发送接收方式为HEX
+        self.hex_send.setChecked(True)
+        self.hex_receive.setChecked(True)
+
     def init(self):
         # 串口检测按钮
         self.s1__box_1.clicked.connect(self.port_check)
@@ -117,11 +121,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def data_send(self):
         if self.ser.isOpen():
             # 自定义输入端的数据包格式
-            input_Head = self.s3__send_text.toPlainText()  # 数据包头部
-            input_CMD = self.s3__send_text_2.toPlainText()  # 数据包CMD
-            input_Length = self.s3__send_text_3.toPlainText()  # 数据包的数据长度
+            input_Head = self.s3__send_Head.toPlainText()  # 数据包头部
+            input_CMD = self.s3__send_CMD.toPlainText()  # 数据包CMD
 
-            input_Data = self.s3__send_text_4.toPlainText()  # 数据包的数据
+            input_Data = self.s3__send_Data.toPlainText()  # 数据包的数据
             if input_Data != "":
                 if self.hex_send.isChecked():
                     input_Data = input_Data.strip()
@@ -156,60 +159,62 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             else:
                 pass
 
+            #将数据长度清除并更新显示
+            self.s3__send_Length.setText("")
+            input_Length = str(len(input_Data))
+            self.s3__send_Length.insertPlainText(input_Length)
+
             #校验位置零,校验位为输入数据的总和
             input_CheckSum = 0
             for i in range(0,len(input_Data)):
                 input_CheckSum = input_CheckSum + input_Data[i]
             if self.hex_send.isChecked():
-                input_CheckSum = str(hex(input_CheckSum))
-                input_CheckSum = input_CheckSum[2:]
-            else:
-                input_CheckSum = str(input_CheckSum)
-
-
-            #将校验和清除并更新显示
-            self.s3__send_text_5.setText("")
-            self.s3__send_text_5.insertPlainText(input_CheckSum)
-
-            print(int(input_Length))
-            print(len(input_Data))
-
-            #输入数据求总和为校验位数值
-            if (int(input_Length))  == len(input_Data):
-
+                
                 # 将input_Data由列表转换为字符串
                 input_Data_s = [str(i) for i in input_Data]
                 input_Data = ''.join(input_Data_s)
 
-                input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
-                print(input_s)
-
-                if input_s != "":
-                    # 非空字符串
-                    if self.hex_send.isChecked():
-                        # hex发送
-                        input_s = input_s.strip()
-                        send_list = []
-                        while input_s != '':
-                            try:
-                                num = int(input_s[0:2], 16)
-                            except ValueError:
-                                QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
-                                return None
-                            input_s = input_s[2:].strip()
-                            send_list.append(num)
-                        input_s = bytes(send_list)
-                    else:
-                        # ascii发送
-                        input_s = (input_s + '\r\n').encode('utf-8')
-
-                    num = self.ser.write(input_s)
-                    self.data_num_sended += num
-                    self.lineEdit_2.setText(str(self.data_num_sended))
-
+                input_CheckSum = str(hex(input_CheckSum))
+                input_CheckSum = input_CheckSum[2:]
             else:
-                text = "当前发送的数据长度与Data_Length不匹配。"
-                QtWidgets.QMessageBox.information(self, "提示", text, QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.Ok)
+                # 将input_Data由列表转换为字符串
+                input_Data_s = [str(i) for i in input_Data]
+                input_Data = ''.join(input_Data_s)
+
+                input_CheckSum = str(input_CheckSum)
+
+
+            #将校验和清除并更新显示
+            self.s3__send_CheckSum.setText("")
+            self.s3__send_CheckSum.insertPlainText(input_CheckSum)
+
+            input_s = input_Head + input_CMD + input_Length + input_Data + input_CheckSum
+            print(input_s)
+
+            if input_s != "":
+                # 非空字符串
+                if self.hex_send.isChecked():
+                    # hex发送
+                    input_s = input_s.strip()
+                    send_list = []
+                    while input_s != '':
+                        try:
+                            num = int(input_s[0:2], 16)
+                        except ValueError:
+                            QMessageBox.critical(self, 'wrong data', '请输入十六进制数据，以空格分开!')
+                            return None
+                        input_s = input_s[2:].strip()
+                        send_list.append(num)
+                    input_s = bytes(send_list)
+                else:
+                    # ascii发送
+                    input_s = (input_s + '\r\n').encode('utf-8')
+
+                num = self.ser.write(input_s)
+                self.data_num_sended += num
+                self.lineEdit_2.setText(str(self.data_num_sended))
+
+
         else:
             pass
 
@@ -257,11 +262,11 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
     # 清除显示
     def send_data_clear(self):
-        self.s3__send_text.setText("")
-        self.s3__send_text_2.setText("")
-        self.s3__send_text_3.setText("")
-        self.s3__send_text_4.setText("")
-        self.s3__send_text_5.setText("")
+        self.s3__send_Head.setText("")
+        self.s3__send_CMD.setText("")
+        self.s3__send_Length.setText("")
+        self.s3__send_Data.setText("")
+        self.s3__send_CheckSum.setText("")
 
 
     def receive_data_clear(self):
