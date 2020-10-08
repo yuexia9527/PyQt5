@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>893</width>
-    <height>837</height>
+    <width>895</width>
+    <height>811</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -273,7 +273,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>10</x>
       <y>11</y>
-      <width>181</width>
+      <width>191</width>
       <height>231</height>
      </rect>
     </property>
@@ -281,12 +281,98 @@ p, li { white-space: pre-wrap; }
      <string>串口设置</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="1">
+      <widget class="QPushButton" name="s1__box_1">
+       <property name="text">
+        <string>检测串口</string>
+       </property>
+       <property name="autoRepeatInterval">
+        <number>100</number>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="s1__lb_3">
        <property name="text">
         <string>波特率：</string>
        </property>
       </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="s1__lb_4">
+       <property name="text">
+        <string>数据位：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="s1__box_4">
+       <item>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>7</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="s1__lb_5">
+       <property name="text">
+        <string>校验位：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QComboBox" name="s1__box_5">
+       <item>
+        <property name="text">
+         <string>N</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="s1__lb_6">
+       <property name="text">
+        <string>停止位：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="s1__lb_1">
+       <property name="text">
+        <string>串口检测：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QComboBox" name="s1__box_6">
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="s1__box_2"/>
      </item>
      <item row="2" column="1">
       <widget class="QComboBox" name="s1__box_3">
@@ -352,96 +438,10 @@ p, li { white-space: pre-wrap; }
        </item>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="s1__box_2"/>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="s1__lb_6">
-       <property name="text">
-        <string>停止位：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="s1__box_1">
-       <property name="text">
-        <string>检测串口</string>
-       </property>
-       <property name="autoRepeatInterval">
-        <number>100</number>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QComboBox" name="s1__box_6">
-       <item>
-        <property name="text">
-         <string>1</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QComboBox" name="s1__box_5">
-       <item>
-        <property name="text">
-         <string>N</string>
-        </property>
-       </item>
-      </widget>
-     </item>
      <item row="1" column="0">
       <widget class="QLabel" name="s1__lb_2">
        <property name="text">
         <string>串口选择：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="s1__lb_5">
-       <property name="text">
-        <string>校验位：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="s1__lb_1">
-       <property name="text">
-        <string>串口检测：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="s1__box_4">
-       <item>
-        <property name="text">
-         <string>8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>5</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="s1__lb_4">
-       <property name="text">
-        <string>数据位：</string>
        </property>
       </widget>
      </item>
@@ -475,7 +475,7 @@ p, li { white-space: pre-wrap; }
       <x>0</x>
       <y>422</y>
       <width>611</width>
-      <height>221</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="title">
@@ -558,7 +558,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>893</width>
+     <width>895</width>
      <height>26</height>
     </rect>
    </property>

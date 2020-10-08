@@ -3,7 +3,7 @@ import serial
 import serial.tools.list_ports
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox,QDesktopWidget
 from PyQt5.QtCore import QTimer
 from ui_demo_1 import Ui_MainWindow
 
@@ -31,6 +31,7 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
 
         #设置主窗口图标
         self.setWindowIcon(QtGui.QIcon('./images/11.ico'))
+
         # 串口检测按钮
         self.s1__box_1.clicked.connect(self.port_check)
 
@@ -151,20 +152,23 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
                         send_data.append(input_num)
                     input_Data = bytes(send_data)
                 else:
-                    input_Data = input_Data.strip()
-                    send_data = []
-                    while input_Data != '':
-                        try:
-                            # 将input_Data数据没两个字符拿出，并转换成int类型的数据
-                            input_num = int(input_Data[0:2])
-                        except ValueError:
-                            QMessageBox.critical(self, 'wrong data', '请输入十进制数据，以空格分开!')
-                            return None
-                        # 将拿出的字符切片
-                        input_Data = input_Data[2:].strip()
-                        # 将数据按顺序放入列表中
-                        send_data.append(input_num)
-                    input_Data = send_data
+                    # ascii发送
+                    input_Data = (input_Data + '\r\n').encode('utf-8')
+
+                    # input_Data = input_Data.strip()
+                    # send_data = []
+                    # while input_Data != '':
+                    #     try:
+                    #         # 将input_Data数据没两个字符拿出，并转换成int类型的数据
+                    #         input_num = int(input_Data[0:2])
+                    #     except ValueError:
+                    #         QMessageBox.critical(self, 'wrong data', '请输入十进制数据，以空格分开!')
+                    #         return None
+                    #     # 将拿出的字符切片
+                    #     input_Data = input_Data[2:].strip()
+                    #     # 将数据按顺序放入列表中
+                    #     send_data.append(input_num)
+                    # input_Data = send_data
             else:
                 pass
 
@@ -177,6 +181,7 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
             input_CheckSum = 0
             for i in range(0,len(input_Data)):
                 input_CheckSum = input_CheckSum + input_Data[i]
+
             if self.hex_send.isChecked():
                 # 祛除十六进制的数据字符串中的空格
                 input_Data = input_Data_str.replace(" ", "")
@@ -187,7 +192,6 @@ class Pyqt5_Serial(QtWidgets.QMainWindow, Ui_MainWindow):
                 # 将input_Data由列表转换为字符串
                 input_Data_s = [str(i) for i in input_Data]
                 input_Data = ''.join(input_Data_s)
-
                 input_CheckSum = str(input_CheckSum)
 
 
