@@ -12,35 +12,67 @@
           0 0 1 0 0 1
           0 0 1 0 0 1
           0 0 1 0 0 1
+          <InformationKey name="L2_NORM_RANGE" location="vtkDataArray" length="2">
+            <Value index="0">
+              1
+            </Value>
+            <Value index="1">
+              1
+            </Value>
+          </InformationKey>
         </DataArray>
-        <DataArray type="Float32" Name="TextureCoordinates" NumberOfComponents="2" format="ascii" RangeMin="0" RangeMax="1.4142135624">
-          0 0 0.33333334327 0 0.66666668653 0
-          1 0 0 0.33333334327 0.33333334327 0.33333334327
-          0.66666668653 0.33333334327 1 0.33333334327 0 0.66666668653
-          0.33333334327 0.66666668653 0.66666668653 0.66666668653 1 0.66666668653
-          0 1 0.33333334327 1 0.66666668653 1
+        <DataArray type="Float32" Name="TextureCoordinates" NumberOfComponents="2" format="ascii" RangeMin="0" RangeMax="1.4142135623730951">
+          0 0 0.3333333432674408 0 0.6666666865348816 0
+          1 0 0 0.3333333432674408 0.3333333432674408 0.3333333432674408
+          0.6666666865348816 0.3333333432674408 1 0.3333333432674408 0 0.6666666865348816
+          0.3333333432674408 0.6666666865348816 0.6666666865348816 0.6666666865348816 1 0.6666666865348816
+          0 1 0.3333333432674408 1 0.6666666865348816 1
           1 1
+          <InformationKey name="L2_NORM_RANGE" location="vtkDataArray" length="2">
+            <Value index="0">
+              0
+            </Value>
+            <Value index="1">
+              1.4142135624
+            </Value>
+          </InformationKey>
         </DataArray>
       </PointData>
       <CellData Scalars="colors">
-        <DataArray type="UInt8" Name="colors" NumberOfComponents="3" format="ascii" RangeMin="165.03938924" RangeMax="410.24382994">
+        <DataArray type="UInt8" Name="colors" NumberOfComponents="3" format="ascii" RangeMin="165.03938923784224" RangeMax="410.2438299353203">
           227 207 87 255 99 71
           245 222 179 230 230 250
           255 125 64 135 38 87
           250 128 114 189 252 201
           51 161 201
+          <InformationKey name="L2_NORM_RANGE" location="vtkDataArray" length="2">
+            <Value index="0">
+              165.03938924
+            </Value>
+            <Value index="1">
+              410.24382994
+            </Value>
+          </InformationKey>
         </DataArray>
       </CellData>
       <Points>
-        <DataArray type="Float32" Name="Points" NumberOfComponents="3" format="ascii" RangeMin="0.23570226742" RangeMax="0.70710678119">
-          -0.5 -0.5 0 -0.16666667163 -0.5 0
-          0.16666667163 -0.5 0 0.5 -0.5 0
-          -0.5 -0.16666667163 0 -0.16666667163 -0.16666667163 0
-          0.16666667163 -0.16666667163 0 0.5 -0.16666667163 0
-          -0.5 0.16666667163 0 -0.16666667163 0.16666667163 0
-          0.16666667163 0.16666667163 0 0.5 0.16666667163 0
-          -0.5 0.5 0 -0.16666667163 0.5 0
-          0.16666667163 0.5 0 0.5 0.5 0
+        <DataArray type="Float32" Name="Points" NumberOfComponents="3" format="ascii" RangeMin="0.2357022674199906" RangeMax="0.7071067811865476">
+          -0.5 -0.5 0 -0.1666666716337204 -0.5 0
+          0.1666666716337204 -0.5 0 0.5 -0.5 0
+          -0.5 -0.1666666716337204 0 -0.1666666716337204 -0.1666666716337204 0
+          0.1666666716337204 -0.1666666716337204 0 0.5 -0.1666666716337204 0
+          -0.5 0.1666666716337204 0 -0.1666666716337204 0.1666666716337204 0
+          0.1666666716337204 0.1666666716337204 0 0.5 0.1666666716337204 0
+          -0.5 0.5 0 -0.1666666716337204 0.5 0
+          0.1666666716337204 0.5 0 0.5 0.5 0
+          <InformationKey name="L2_NORM_RANGE" location="vtkDataArray" length="2">
+            <Value index="0">
+              0.23570226742
+            </Value>
+            <Value index="1">
+              0.70710678119
+            </Value>
+          </InformationKey>
         </DataArray>
       </Points>
       <Verts>
