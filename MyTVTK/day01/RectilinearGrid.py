@@ -1,10 +1,12 @@
 from tvtk.api import tvtk
 import numpy as np
 
+
 x = np.array([0,3,9,15])
 y = np.array([0,1,5])
 z = np.array([0,2,3])
 r = tvtk.RectilinearGrid()
+
 r.x_coordinates = x
 r.y_coordinates = y
 r.z_coordinates = z
