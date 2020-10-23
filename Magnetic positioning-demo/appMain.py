@@ -17,12 +17,8 @@ sys.exit(app.exec_())
 
 # 异常获取模块
 _oldExceptionCatch = sys.excepthook
-
-
 def _exceptionCatch(exceptionType, value, traceback):
     _oldExceptionCatch(exceptionType, value, traceback)
-
-
 # 由于Qt界面中的异常捕获不到
 # 把系统的全局异常获取函数进行重定向
 sys.excepthook = _exceptionCatch

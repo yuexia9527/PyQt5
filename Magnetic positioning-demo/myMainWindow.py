@@ -25,6 +25,9 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.data_num_sended = 0
         self.lineEdit_2.setText(str(self.data_num_sended))
 
+        # 数据读取与可视化
+        array = extract_array()
+        plt_show(array)
 
     def init(self):
         # 串口检测按钮
@@ -257,7 +260,5 @@ if __name__ == '__main__':
     myshow.show()
     sys.exit(app.exec_())
 
-    #数据读取与可视化
-    array = extract_array()
-    plt_show(array)
+
 
