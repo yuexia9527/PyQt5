@@ -5,7 +5,7 @@ import time
 
 def extract_array():
 
-    file = open("Magnetic positioning-demo/Magnetic positioning.txt", "r")
+    file = open("Magnetic positioning.txt", "r")
     list_arr = file.readlines() #读取数据文件的每一行
 
     lists = [] #生成列表
