@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui_demo_1.ui'
+# Form implementation generated from reading ui file 'ui_MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.0
 #
@@ -80,13 +80,13 @@ class Ui_Form(object):
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.s1__box_6)
         self.open_button = QtWidgets.QPushButton(self.formGroupBox)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("Magnetic positioning-demo/QtApp/images/start.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("QtApp/images/start.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.open_button.setIcon(icon)
         self.open_button.setObjectName("open_button")
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.SpanningRole, self.open_button)
         self.close_button = QtWidgets.QPushButton(self.formGroupBox)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("Magnetic positioning-demo/QtApp/images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("QtApp/images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.close_button.setIcon(icon1)
         self.close_button.setObjectName("close_button")
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.SpanningRole, self.close_button)
@@ -112,9 +112,9 @@ class Ui_Form(object):
         self.s3__send_button.setGeometry(QtCore.QRect(720, 590, 111, 101))
         self.s3__send_button.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("Magnetic positioning-demo/QtApp/images/send.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("QtApp/images/send.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.s3__send_button.setIcon(icon2)
-        self.s3__send_button.setIconSize(QtCore.QSize(45, 45))
+        self.s3__send_button.setIconSize(QtCore.QSize(55, 55))
         self.s3__send_button.setObjectName("s3__send_button")
         self.formGroupBox1 = QtWidgets.QGroupBox(Form)
         self.formGroupBox1.setGeometry(QtCore.QRect(10, 590, 241, 101))
@@ -154,7 +154,7 @@ class Ui_Form(object):
         self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.hex_receive)
         self.s2__clear_button = QtWidgets.QPushButton(self.formGroupBox_2)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("Magnetic positioning-demo/QtApp/images/clean_receive.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("QtApp/images/clean_receive.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.s2__clear_button.setIcon(icon3)
         self.s2__clear_button.setIconSize(QtCore.QSize(25, 25))
         self.s2__clear_button.setObjectName("s2__clear_button")
@@ -184,7 +184,7 @@ class Ui_Form(object):
         self.s3__clear_button = QtWidgets.QPushButton(self.formGroupBox_4)
         self.s3__clear_button.setMaximumSize(QtCore.QSize(16777215, 16777213))
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("Magnetic positioning-demo/QtApp/images/clear.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("QtApp/images/clear.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.s3__clear_button.setIcon(icon4)
         self.s3__clear_button.setIconSize(QtCore.QSize(30, 30))
         self.s3__clear_button.setObjectName("s3__clear_button")

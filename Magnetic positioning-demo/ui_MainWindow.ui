@@ -215,7 +215,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../images/start.png</normaloff>../images/start.png</iconset>
+        <normaloff>QtApp/images/start.png</normaloff>QtApp/images/start.png</iconset>
       </property>
      </widget>
     </item>
@@ -226,7 +226,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../images/stop.png</normaloff>../images/stop.png</iconset>
+        <normaloff>QtApp/images/stop.png</normaloff>QtApp/images/stop.png</iconset>
       </property>
      </widget>
     </item>
@@ -314,12 +314,12 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../images/send.png</normaloff>../images/send.png</iconset>
+     <normaloff>QtApp/images/send.png</normaloff>QtApp/images/send.png</iconset>
    </property>
    <property name="iconSize">
     <size>
-     <width>45</width>
-     <height>45</height>
+     <width>55</width>
+     <height>55</height>
     </size>
    </property>
   </widget>
@@ -443,7 +443,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../images/clean_receive.png</normaloff>../images/clean_receive.png</iconset>
+        <normaloff>QtApp/images/clean_receive.png</normaloff>QtApp/images/clean_receive.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -535,7 +535,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../images/clear.png</normaloff>../images/clear.png</iconset>
+        <normaloff>QtApp/images/clear.png</normaloff>QtApp/images/clear.png</iconset>
       </property>
       <property name="iconSize">
        <size>
