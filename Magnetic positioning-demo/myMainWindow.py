@@ -194,11 +194,11 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
     def receive_data_clear(self):
         self.s2__receive_text.setText("")
-        
+
 
 def extract_array():
 
-    file = open("Magnetic positioning.txt", "r")
+    file = open("Magnetic positioning-demo/Magnetic positioning.txt", "r")
     list_arr = file.readlines() #读取数据文件的每一行
 
     lists = [] #生成列表
