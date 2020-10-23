@@ -3,10 +3,9 @@
 ##  GUI应用程序主程序入口
 
 import sys
-
 from PyQt5.QtWidgets import QApplication
-
 from myMainWindow import Pyqt5_Serial
+
 
 app = QApplication(sys.argv)  # 创建GUI应用程序
 
