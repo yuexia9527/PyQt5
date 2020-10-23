@@ -6,12 +6,24 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-from myMainWindow import QmyMainWindow
+from myMainWindow import Pyqt5_Serial
 
 app = QApplication(sys.argv)  # 创建GUI应用程序
 
-mainform = QmyMainWindow()  # 创建主窗体
+mainform = Pyqt5_Serial()  # 创建主窗体
 
 mainform.show()  # 显示主窗体
 
 sys.exit(app.exec_())
+
+# 异常获取模块
+_oldExceptionCatch = sys.excepthook
+
+
+def _exceptionCatch(exceptionType, value, traceback):
+    _oldExceptionCatch(exceptionType, value, traceback)
+
+
+# 由于Qt界面中的异常捕获不到
+# 把系统的全局异常获取函数进行重定向
+sys.excepthook = _exceptionCatch

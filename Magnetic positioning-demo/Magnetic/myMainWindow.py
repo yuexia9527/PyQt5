@@ -4,7 +4,7 @@ import serial.tools.list_ports
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer
-from ui_demo_1 import Ui_Form
+from ui_MainWindow import Ui_Form
 import matplotlib.pyplot as plt
 import numpy as np
 import time
