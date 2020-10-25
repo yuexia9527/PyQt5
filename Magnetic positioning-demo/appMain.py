@@ -63,6 +63,8 @@ if __name__ == '__main__':
 
     mainform.show()  # 显示主窗体
 
+    # mainform.iren.Initialize()  # Need this line to actually show the render inside Qt
+
     sys.exit(app.exec_())
 
     # 数据读取与可视化
