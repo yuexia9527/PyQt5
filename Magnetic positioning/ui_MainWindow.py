@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui_demo_1.ui'
+# Form implementation generated from reading ui file 'ui_MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.0
 #
@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 
 class Ui_Form(object):
@@ -80,13 +81,13 @@ class Ui_Form(object):
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.s1__box_6)
         self.open_button = QtWidgets.QPushButton(self.formGroupBox)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../images/start.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("QtApp/images/start.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.open_button.setIcon(icon)
         self.open_button.setObjectName("open_button")
         self.formLayout.setWidget(6, QtWidgets.QFormLayout.SpanningRole, self.open_button)
         self.close_button = QtWidgets.QPushButton(self.formGroupBox)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("QtApp/images/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.close_button.setIcon(icon1)
         self.close_button.setObjectName("close_button")
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.SpanningRole, self.close_button)
@@ -112,9 +113,9 @@ class Ui_Form(object):
         self.s3__send_button.setGeometry(QtCore.QRect(720, 590, 111, 101))
         self.s3__send_button.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../images/send.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("QtApp/images/send.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.s3__send_button.setIcon(icon2)
-        self.s3__send_button.setIconSize(QtCore.QSize(45, 45))
+        self.s3__send_button.setIconSize(QtCore.QSize(55, 55))
         self.s3__send_button.setObjectName("s3__send_button")
         self.formGroupBox1 = QtWidgets.QGroupBox(Form)
         self.formGroupBox1.setGeometry(QtCore.QRect(10, 590, 241, 101))
@@ -154,7 +155,7 @@ class Ui_Form(object):
         self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.hex_receive)
         self.s2__clear_button = QtWidgets.QPushButton(self.formGroupBox_2)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../images/clean_receive.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("QtApp/images/clean_receive.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.s2__clear_button.setIcon(icon3)
         self.s2__clear_button.setIconSize(QtCore.QSize(25, 25))
         self.s2__clear_button.setObjectName("s2__clear_button")
@@ -184,7 +185,7 @@ class Ui_Form(object):
         self.s3__clear_button = QtWidgets.QPushButton(self.formGroupBox_4)
         self.s3__clear_button.setMaximumSize(QtCore.QSize(16777215, 16777213))
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../images/clear.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("QtApp/images/clear.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.s3__clear_button.setIcon(icon4)
         self.s3__clear_button.setIconSize(QtCore.QSize(30, 30))
         self.s3__clear_button.setObjectName("s3__clear_button")
@@ -249,7 +250,7 @@ class Ui_Form(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">123456</p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">S</p></body></html>"))
         self.formGroupBox1.setTitle(_translate("Form", "串口状态"))
         self.label.setText(_translate("Form", "已接收："))
         self.label_2.setText(_translate("Form", "已发送："))
@@ -263,4 +264,4 @@ class Ui_Form(object):
         self.formGroupBox_4.setTitle(_translate("Form", "发送区控制"))
         self.s3__clear_button.setText(_translate("Form", "清除发送"))
         self.hex_send.setText(_translate("Form", "Hex发送"))
-        self.groupBox.setTitle(_translate("Form", "磁钉位姿显示"))
+        self.groupBox.setTitle(_translate("Form", "磁体位姿显示"))

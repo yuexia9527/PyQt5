@@ -1,4 +1,5 @@
 import sys
+import vtk
 import serial
 import serial.tools.list_ports
 from PyQt5 import QtWidgets
@@ -6,12 +7,13 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer
 from ui_MainWindow import Ui_Form
+from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.style as mplStyle  #一个模块
 from  matplotlib.backends.backend_qt5agg import (FigureCanvas,
             NavigationToolbar2QT as NavigationToolbar)
-import vtk
+
 import numpy as np
 import time
 
@@ -19,34 +21,11 @@ import time
 class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(Pyqt5_Serial, self).__init__()
-        self.ui = Ui_Form()
         self.setupUi(self)
         self.init()
         self.setWindowTitle("磁定位显示助手")
         self.ser = serial.Serial()
         self.port_check()
-
-
-        # #VTK创建一个3d物体
-        # self.ren = vtk.vtkRenderer()
-        # self.ui.vtkWidget.GetRenderWindow().AddRenderer(self.ren)
-        # self.iren = self.ui.vtkWidget.GetRenderWindow().GetInteractor()
-        #
-        # # Create source
-        # source = vtk.vtkSphereSource()
-        # source.SetCenter(0, 0, 0)
-        # source.SetRadius(5.0)
-        #
-        # # Create a mapper
-        # mapper = vtk.vtkPolyDataMapper()
-        # mapper.SetInputConnection(source.GetOutputPort())
-        #
-        # # Create an actor
-        # actor = vtk.vtkActor()
-        # actor.SetMapper(mapper)
-        #
-        # self.ren.AddActor(actor)
-
 
         # 接收数据和发送数据数目置零
         self.data_num_received = 0

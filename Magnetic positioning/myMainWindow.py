@@ -2,20 +2,31 @@ import sys
 import serial
 import serial.tools.list_ports
 from PyQt5 import QtWidgets
+from PyQt5 import QtGui
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer
-from ui_demo_1 import Ui_Form
-
+from ui_MainWindow import Ui_Form
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.style as mplStyle  #一个模块
+from  matplotlib.backends.backend_qt5agg import (FigureCanvas,
+            NavigationToolbar2QT as NavigationToolbar)
+from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+import vtk
+import numpy as np
+import time
 
 
 class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(Pyqt5_Serial, self).__init__()
+        self.ui = Ui_Form()
         self.setupUi(self)
         self.init()
-        self.setWindowTitle("磁钉定位显示")
+        self.setWindowTitle("磁定位显示助手")
         self.ser = serial.Serial()
         self.port_check()
+
 
         # 接收数据和发送数据数目置零
         self.data_num_received = 0
@@ -23,7 +34,36 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.data_num_sended = 0
         self.lineEdit_2.setText(str(self.data_num_sended))
 
+
+        # # VTK创建一个3d物体
+        # self.ren = vtk.vtkRenderer()
+        # self.ui.vtkWidget.GetRenderWindow().AddRenderer(self.ren)
+        # self.iren = self.ui.vtkWidget.GetRenderWindow().GetInteractor()
+        #
+        # # Create source
+        # source = vtk.vtkSphereSource()
+        # source.SetCenter(0, 0, 0)
+        # source.SetRadius(5.0)
+        #
+        # # Create a mapper
+        # mapper = vtk.vtkPolyDataMapper()
+        # mapper.SetInputConnection(source.GetOutputPort())
+        #
+        # # Create an actor
+        # actor = vtk.vtkActor()
+        # actor.SetMapper(mapper)
+        #
+        # self.ren.AddActor(actor)
+        #
+        # # 数据读取与可视化
+        # array = self.extract_array()
+        # self.plt_show(array)
+
     def init(self):
+
+        #设置主窗口图标
+        self.setWindowIcon(QtGui.QIcon('./QtApp/images/11.ico'))
+
         # 串口检测按钮
         self.s1__box_1.clicked.connect(self.port_check)
 
@@ -192,9 +232,67 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def receive_data_clear(self):
         self.s2__receive_text.setText("")
 
+    #将接收到的字符串转换Wie列表：
+    def extract_array(self):
+
+        file = open("Magnetic positioning.txt", "r")
+        list_arr = file.readlines()  # 读取数据文件的每一行
+
+        lists = []  # 生成列表
+
+        for index, x in enumerate(list_arr):
+            x = x.strip()
+            x = x[:-1]
+            x = x.strip('[]')
+            x = x.split(", ")
+            lists.append(x)
+        array = np.array(lists)
+        array = array.astype(float)
+
+        return array
+
+    def plt_show(array):
+
+        for index, a in enumerate(array):
+            fig = plt.figure()
+            ax = fig.gca(projection='3d')
+
+            # Make the grid
+            x = np.array([a[0]])
+            print(x)
+            y = np.array([a[1]])
+            z = np.array([a[2]])  # 坐标点（x,y,z）
+
+            # Make the direction data for the arrows
+            u = np.array([a[3]])
+            v = np.array([a[4]])
+            w = np.array([a[5]])  # 方向（u,v,w）
+
+            ax.quiver(x, y, z, u, v, w, length=0.2, normalize=True)  # 模长设置为1
+            # 设置坐标系的显示范围
+            ax.set_xlim(-0.1, 0.1)
+            ax.set_ylim(-0.1, 0.1)
+            ax.set_zlim(-1, 1)
+            plt.show()
+            time.sleep(0.1)
 
 if __name__ == '__main__':
+
+    #异常获取模块
+    _oldExceptionCatch = sys.excepthook
+    def _exceptionCatch(exceptionType, value, traceback):
+        _oldExceptionCatch(exceptionType, value, traceback)
+    # 由于Qt界面中的异常捕获不到
+    # 把系统的全局异常获取函数进行重定向
+    sys.excepthook = _exceptionCatch
+
+    #QT显示模块
     app = QtWidgets.QApplication(sys.argv)
     myshow = Pyqt5_Serial()
     myshow.show()
     sys.exit(app.exec_())
+
+
+
+
+

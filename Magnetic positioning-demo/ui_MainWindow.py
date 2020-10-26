@@ -10,8 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+import sys
 import vtk
-
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -197,9 +197,9 @@ class Ui_Form(object):
         self.groupBox = QtWidgets.QGroupBox(Form)
         self.groupBox.setGeometry(QtCore.QRect(220, 10, 601, 371))
         self.groupBox.setObjectName("groupBox")
-        self.widget = QtWidgets.QWidget(self.groupBox)
-        self.widget.setGeometry(QtCore.QRect(0, 20, 601, 351))
-        self.widget.setObjectName("widget")
+        self.centralWidget = QtWidgets.QWidget(self.groupBox)
+        self.centralWidget.setGeometry(QtCore.QRect(0, 20, 601, 351))
+        self.centralWidget.setObjectName("centralWidget")
         self.verticalGroupBox.raise_()
         self.verticalGroupBox_2.raise_()
         self.formGroupBox.raise_()
@@ -265,4 +265,4 @@ class Ui_Form(object):
         self.formGroupBox_4.setTitle(_translate("Form", "发送区控制"))
         self.s3__clear_button.setText(_translate("Form", "清除发送"))
         self.hex_send.setText(_translate("Form", "Hex发送"))
-        self.groupBox.setTitle(_translate("Form", "磁体位姿显示"))
+        self.groupBox.setTitle(_translate("Form", "磁钉位姿显示"))
