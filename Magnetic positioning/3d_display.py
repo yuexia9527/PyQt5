@@ -1,6 +1,6 @@
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
-from mayavi import mlab
+from mayavi_test import mlab
 import numpy as np
 import time
 

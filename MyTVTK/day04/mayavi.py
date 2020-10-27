@@ -1,1 +1,1 @@
-from mayavi import mlab
+from mayavi_test import mlab

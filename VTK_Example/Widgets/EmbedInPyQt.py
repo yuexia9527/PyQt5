@@ -2,8 +2,8 @@
 
 import sys
 import vtk
-from PyQt4 import QtGui
-from vtk.qt4.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+from PyQt5 import QtGui
+from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 
 
 class MainWindow(QtGui.QMainWindow):

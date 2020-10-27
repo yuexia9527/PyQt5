@@ -1,6 +1,6 @@
 from numpy import sin, cos
 import numpy as np
-from mayavi import mlab
+from mayavi_test import mlab
 
 x, y, z = np.ogrid[-2:2:40j, -2:2:40j, -2:0:40j]# #((40, 1, 1), (1, 40, 1), (1, 1, 40))
 s = 2/np.sqrt((x-1)**2 + y**2 + z**2) + 1/np.sqrt((x+1)**2 + y**2 + z**2)#广播运算
