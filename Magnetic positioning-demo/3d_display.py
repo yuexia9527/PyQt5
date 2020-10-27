@@ -1,5 +1,6 @@
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
+from mayavi import mlab
 import numpy as np
 import time
 
@@ -26,12 +27,11 @@ def plt_show(array):
 
     for index, a in enumerate(array):
 
-        fig = plt.figure()
-        ax = fig.gca(projection='3d')
+        # fig = plt.figure()
+        # ax = fig.gca(projection='3d')
 
         # Make the grid
         x = np.array([a[0]])
-        print(x)
         y = np.array([a[1]])
         z = np.array([a[2]])  # 坐标点（x,y,z）
 
@@ -40,16 +40,21 @@ def plt_show(array):
         v = np.array([a[4]])
         w = np.array([a[5]])  # 方向（u,v,w）
 
-        ax.quiver(x, y, z, u, v, w, length=0.2, normalize=True)  # 模长设置为1
-        #设置坐标系的显示范围
-        ax.set_xlim(-0.1, 0.1)
-        ax.set_ylim(-0.1, 0.1)
-        ax.set_zlim(-1, 1)
-        plt.show()
-        time.sleep(0.1)
+        # ax.quiver(x, y, z, u, v, w, length=0.2, normalize=True)  # 模长设置为1
+        # #设置坐标系的显示范围
+        # ax.set_xlim(-0.1, 0.1)
+        # ax.set_ylim(-0.1, 0.1)
+        # ax.set_zlim(-1, 1)
+        # plt.show()
+        # time.sleep(0.1)
 
+        obj = mlab.quiver3d(x, y, z, u, v, w, line_width=3, scale_factor=1)
+        mlab.show()
 
 
 if __name__ == '__main__':
     array = extract_array()
     plt_show(array)
+
+
+

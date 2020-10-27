@@ -5,6 +5,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 from myMainWindow import Pyqt5_Serial
+from myMainWindow import VTKView
 import matplotlib.pyplot as plt
 import numpy as np
 import time
@@ -57,19 +58,18 @@ def plt_show(array):
 
 if __name__ == '__main__':
 
+    #主程序应用
     app = QApplication(sys.argv)  # 创建GUI应用程序
-
+    #串口调试窗口
     mainform = Pyqt5_Serial()  # 创建主窗体
-
     mainform.show()  # 显示主窗体
-
-    # mainform.iren.Initialize()  # Need this line to actually show the render inside Qt
+    #VTK3D显示窗口
+    window = VTKView()
+    window.show()
+    window.iren.Initialize()  # Need this line to actually show the render inside Qt
 
     sys.exit(app.exec_())
 
-    # 数据读取与可视化
-    array = extract_array()
-    plt_show(array)
 
     # 异常获取模块
     _oldExceptionCatch = sys.excepthook
