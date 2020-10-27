@@ -1,4 +1,5 @@
 import sys
+import vtk
 import serial
 import serial.tools.list_ports
 from PyQt5 import QtWidgets
@@ -6,13 +7,14 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer
 from ui_MainWindow import Ui_Form
+from ui_MainWindow import Ui_MainWindow
+from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.style as mplStyle  #一个模块
 from  matplotlib.backends.backend_qt5agg import (FigureCanvas,
             NavigationToolbar2QT as NavigationToolbar)
-from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
-import vtk
+
 import numpy as np
 import time
 
@@ -27,7 +29,6 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.ser = serial.Serial()
         self.port_check()
 
-
         # 接收数据和发送数据数目置零
         self.data_num_received = 0
         self.lineEdit.setText(str(self.data_num_received))
@@ -35,34 +36,13 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.lineEdit_2.setText(str(self.data_num_sended))
 
 
-        # # VTK创建一个3d物体
-        # self.ren = vtk.vtkRenderer()
-        # self.ui.vtkWidget.GetRenderWindow().AddRenderer(self.ren)
-        # self.iren = self.ui.vtkWidget.GetRenderWindow().GetInteractor()
-        #
-        # # Create source
-        # source = vtk.vtkSphereSource()
-        # source.SetCenter(0, 0, 0)
-        # source.SetRadius(5.0)
-        #
-        # # Create a mapper
-        # mapper = vtk.vtkPolyDataMapper()
-        # mapper.SetInputConnection(source.GetOutputPort())
-        #
-        # # Create an actor
-        # actor = vtk.vtkActor()
-        # actor.SetMapper(mapper)
-        #
-        # self.ren.AddActor(actor)
-        #
-        # # 数据读取与可视化
-        # array = self.extract_array()
-        # self.plt_show(array)
-
     def init(self):
 
         #设置主窗口图标
         self.setWindowIcon(QtGui.QIcon('./QtApp/images/11.ico'))
+
+        #设置主窗口的位置
+        self.setGeometry(85, 125, 840, 720)
 
         # 串口检测按钮
         self.s1__box_1.clicked.connect(self.port_check)
@@ -232,49 +212,75 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def receive_data_clear(self):
         self.s2__receive_text.setText("")
 
-    #将接收到的字符串转换Wie列表：
-    def extract_array(self):
+class VTKView(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        QtWidgets.QMainWindow.__init__(self, parent)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.init()
+        self.VTK()
 
-        file = open("Magnetic positioning.txt", "r")
-        list_arr = file.readlines()  # 读取数据文件的每一行
 
-        lists = []  # 生成列表
+    def init(self):
 
-        for index, x in enumerate(list_arr):
-            x = x.strip()
-            x = x[:-1]
-            x = x.strip('[]')
-            x = x.split(", ")
-            lists.append(x)
-        array = np.array(lists)
-        array = array.astype(float)
+        #设置主窗口图标
+        self.setWindowIcon(QtGui.QIcon('./QtApp/images/11.ico'))
 
-        return array
+        #设置主窗口的位置
+        self.setGeometry(925,125,840,720)
 
-    def plt_show(array):
+        #磁钉3D姿态显示
+        self.setWindowTitle("磁钉3D姿态显示")
 
-        for index, a in enumerate(array):
-            fig = plt.figure()
-            ax = fig.gca(projection='3d')
 
-            # Make the grid
-            x = np.array([a[0]])
-            print(x)
-            y = np.array([a[1]])
-            z = np.array([a[2]])  # 坐标点（x,y,z）
+    def VTK(self):
 
-            # Make the direction data for the arrows
-            u = np.array([a[3]])
-            v = np.array([a[4]])
-            w = np.array([a[5]])  # 方向（u,v,w）
+        self.ren = vtk.vtkRenderer()
+        self.ui.vtkWidget.GetRenderWindow().AddRenderer(self.ren)
+        self.iren = self.ui.vtkWidget.GetRenderWindow().GetInteractor()
 
-            ax.quiver(x, y, z, u, v, w, length=0.2, normalize=True)  # 模长设置为1
-            # 设置坐标系的显示范围
-            ax.set_xlim(-0.1, 0.1)
-            ax.set_ylim(-0.1, 0.1)
-            ax.set_zlim(-1, 1)
-            plt.show()
-            time.sleep(0.1)
+        # Create source
+        source = vtk.vtkCylinderSource()
+        source.SetHeight(1)  # 设置柱体的高
+        source.SetRadius(0.25)  # 设置柱体横截面的半径
+        source.SetResolution(999)  # 设置柱体横截面的等边多边形的边数
+        source.SetCenter(0, 0, 0)  # 设置柱体的起始坐标点
+
+        # Create a mapper
+        mapper = vtk.vtkPolyDataMapper()
+        mapper.SetInputConnection(source.GetOutputPort())
+
+        # Create an actor
+        actor = vtk.vtkActor()
+        actor.SetMapper(mapper)
+
+
+        # add the actors to the scene
+        self.ren.AddActor(actor)
+        colors = vtk.vtkNamedColors()
+        self.ren.SetBackground(colors.GetColor3d("SlateGray"))
+
+        transform = vtk.vtkTransform()
+        transform.Translate(0.0, 0.0, 0.0)
+
+        axes = vtk.vtkAxesActor()
+        #  The axes are positioned with a user transform
+        axes.SetUserTransform(transform)
+
+        # properties of the axes labels can be set as follows
+        # this sets the x axis label to red
+        axes.GetXAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Red"));
+        axes.GetYAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Yellow"));
+        axes.GetZAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Blue"));
+        # the actual text of the axis label can be changed:
+        # axes->SetXAxisLabelText("test");
+
+        self.ren.AddActor(axes)
+
+        self.ren.GetActiveCamera().Azimuth(50)
+        self.ren.GetActiveCamera().Elevation(-30)
+        self.ren.ResetCamera()
+
 
 if __name__ == '__main__':
 
@@ -291,8 +297,6 @@ if __name__ == '__main__':
     myshow = Pyqt5_Serial()
     myshow.show()
     sys.exit(app.exec_())
-
-
 
 
 

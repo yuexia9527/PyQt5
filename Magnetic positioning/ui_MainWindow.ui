@@ -566,7 +566,7 @@ p, li { white-space: pre-wrap; }
    <property name="title">
     <string>磁钉位姿显示</string>
    </property>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QWidget" name="centralWidget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>

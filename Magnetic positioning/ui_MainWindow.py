@@ -9,8 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-
+from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+import sys
+import vtk
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -196,9 +197,15 @@ class Ui_Form(object):
         self.groupBox = QtWidgets.QGroupBox(Form)
         self.groupBox.setGeometry(QtCore.QRect(220, 10, 601, 371))
         self.groupBox.setObjectName("groupBox")
-        self.widget = QtWidgets.QWidget(self.groupBox)
-        self.widget.setGeometry(QtCore.QRect(0, 20, 601, 351))
-        self.widget.setObjectName("widget")
+        self.centralWidget = QtWidgets.QWidget(self.groupBox)
+
+        #创建VTK显示窗口
+        self.gridlayout = QtWidgets.QGridLayout(self.centralWidget)
+        self.vtkWidget = QVTKRenderWindowInteractor(self.centralWidget)
+        self.gridlayout.addWidget(self.vtkWidget, 0, 0, 100, 100)
+
+        self.centralWidget.setGeometry(QtCore.QRect(0, 20, 601, 351))
+        self.centralWidget.setObjectName("centralWidget")
         self.verticalGroupBox.raise_()
         self.verticalGroupBox_2.raise_()
         self.formGroupBox.raise_()
@@ -209,6 +216,7 @@ class Ui_Form(object):
         self.formGroupBox_3.raise_()
         self.formGroupBox_4.raise_()
         self.groupBox.raise_()
+
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -264,4 +272,13 @@ class Ui_Form(object):
         self.formGroupBox_4.setTitle(_translate("Form", "发送区控制"))
         self.s3__clear_button.setText(_translate("Form", "清除发送"))
         self.hex_send.setText(_translate("Form", "Hex发送"))
-        self.groupBox.setTitle(_translate("Form", "磁体位姿显示"))
+        self.groupBox.setTitle(_translate("Form", "磁钉位姿显示"))
+
+class Ui_MainWindow(object):
+    def setupUi( self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        self.centralWidget = QtWidgets.QWidget(MainWindow)
+        self.gridlayout = QtWidgets.QGridLayout(self.centralWidget)
+        self.vtkWidget = QVTKRenderWindowInteractor(self.centralWidget)
+        self.gridlayout.addWidget(self.vtkWidget, 0, 0, 100, 100)
+        MainWindow.setCentralWidget(self.centralWidget)
