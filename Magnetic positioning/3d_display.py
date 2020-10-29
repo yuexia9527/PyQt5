@@ -32,6 +32,7 @@ def plt_show(array):
 
         # Make the grid
         x = np.array([a[0]])
+        print(x)
         y = np.array([a[1]])
         z = np.array([a[2]])  # 坐标点（x,y,z）
 

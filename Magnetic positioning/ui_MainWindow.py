@@ -198,12 +198,6 @@ class Ui_Form(object):
         self.groupBox.setGeometry(QtCore.QRect(220, 10, 601, 371))
         self.groupBox.setObjectName("groupBox")
         self.centralWidget = QtWidgets.QWidget(self.groupBox)
-
-        #创建VTK显示窗口
-        self.gridlayout = QtWidgets.QGridLayout(self.centralWidget)
-        self.vtkWidget = QVTKRenderWindowInteractor(self.centralWidget)
-        self.gridlayout.addWidget(self.vtkWidget, 0, 0, 100, 100)
-
         self.centralWidget.setGeometry(QtCore.QRect(0, 20, 601, 351))
         self.centralWidget.setObjectName("centralWidget")
         self.verticalGroupBox.raise_()

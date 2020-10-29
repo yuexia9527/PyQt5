@@ -212,6 +212,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def receive_data_clear(self):
         self.s2__receive_text.setText("")
 
+
 class VTKView(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         QtWidgets.QMainWindow.__init__(self, parent)
@@ -260,26 +261,56 @@ class VTKView(QtWidgets.QMainWindow):
         colors = vtk.vtkNamedColors()
         self.ren.SetBackground(colors.GetColor3d("SlateGray"))
 
-        transform = vtk.vtkTransform()
-        transform.Translate(0.0, 0.0, 0.0)
-
         axes = vtk.vtkAxesActor()
-        #  The axes are positioned with a user transform
-        axes.SetUserTransform(transform)
-
         # properties of the axes labels can be set as follows
         # this sets the x axis label to red
-        axes.GetXAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Red"));
-        axes.GetYAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Yellow"));
-        axes.GetZAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Blue"));
+        #axes.GetXAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Red"));
+        #axes.GetYAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Yellow"));
+        #axes.GetZAxisCaptionActor2D().GetCaptionTextProperty().SetColor(colors.GetColor3d("Blue"));
         # the actual text of the axis label can be changed:
         # axes->SetXAxisLabelText("test");
 
         self.ren.AddActor(axes)
-
-        self.ren.GetActiveCamera().Azimuth(50)
-        self.ren.GetActiveCamera().Elevation(-30)
+        transform = vtk.vtkTransform()
+        transform.Translate(0.0, 0.0, 0.0)
+        #  The axes are positioned with a user transform
+        axes.SetUserTransform(transform)
+        self.ren.GetActiveCamera().Azimuth(180)
+        self.ren.GetActiveCamera().Elevation(0)
         self.ren.ResetCamera()
+
+        array = extract_array()
+        for index, a in enumerate(array):
+            # Make the grid
+            x = np.array(a[0])
+            print(x)
+            y = np.array(a[1])
+            z = np.array(a[2])  # 坐标点（x,y,z）
+
+            # Make the direction data for the arrows
+            u = np.array(a[3])
+            v = np.array(a[4])
+            w = np.array(a[5])  # 方向（u,v,w）
+            source.SetCenter(x, y, z)  # 设置柱体的起始坐标点
+            time.sleep(0.01)
+
+def extract_array():
+
+    file = open("Magnetic positioning.txt", "r")
+    list_arr = file.readlines() #读取数据文件的每一行
+
+    lists = [] #生成列表
+
+    for index, x in enumerate(list_arr):
+        x = x.strip()
+        x = x[:-1]
+        x = x.strip('[]')
+        x = x.split(", ")
+        lists.append(x)
+    array = np.array(lists)
+    array = array.astype(float)
+
+    return array
 
 
 if __name__ == '__main__':
