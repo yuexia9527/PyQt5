@@ -20,6 +20,7 @@ class CenterForm(QMainWindow):
         size = self.geometry()
         newLeft = (screen.width() - size.width()) / 2
         newTop = (screen.height() - size.height()) / 2
+        #此处的move为绝对移动，及不是根据当前的位置信息进行的移动
         self.move(newLeft,newTop)
 
 

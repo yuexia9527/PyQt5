@@ -28,6 +28,8 @@ class QuitApplication(QMainWindow):
         app = QApplication.instance()
         # 退出应用程序
         app.quit()
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     main = QuitApplication()
