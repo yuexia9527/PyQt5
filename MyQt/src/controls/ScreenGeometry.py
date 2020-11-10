@@ -28,7 +28,7 @@ btn.clicked.connect(onClick_Button)
 
 btn.move(24,52)
 
-widget.resize(300,240)   # 设置工作区的尺寸
+widget.resize(300,240)   # 设置工作区的尺寸，并不是整个窗口的尺寸，整个窗口的尺寸比工作区的尺寸多一个菜单栏的高度，即39。
 
 widget.move(250,200)
 
