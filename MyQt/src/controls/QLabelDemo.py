@@ -23,7 +23,7 @@ QLabel常用的信号（事件）：
 
 import sys
 from PyQt5.QtWidgets import QVBoxLayout,QMainWindow,QApplication,QLabel,QWidget
-from PyQt5.QtGui import QPixmap, QPalette
+from PyQt5.QtGui import QPixmap, QPalette #调色板
 from PyQt5.QtCore import Qt
 
 class QLabelDemo(QWidget) :
@@ -42,7 +42,7 @@ class QLabelDemo(QWidget) :
         palette = QPalette()
         palette.setColor(QPalette.Window,Qt.blue)  # 设置背景色
         label1.setPalette(palette)
-        label1.setAlignment(Qt.AlignCenter)
+        label1.setAlignment(Qt.AlignCenter)  #设置居中对齐
 
         label2.setText("<a href='#'>欢迎使用Python  GUI程序</a>")
 
