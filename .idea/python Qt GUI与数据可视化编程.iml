@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MyQt/Mysrc/day01" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MyQt/MyGUI" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pyserial_Demo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MyQt/PyQt_MyGUI" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MyTVTK/day01" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MyTVTK/day02" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pyserial-Demo-master" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Magnetic positioning-demo/Magnetic/Pyserial-Demo-master" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Magnetic positioning-demo" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.7 (python Qt GUI与数据可视化编程)" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/MyQt/Mysrc/day01" />
+      </list>
+    </option>
+  </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="pytest" />
+  </component>
+</module>

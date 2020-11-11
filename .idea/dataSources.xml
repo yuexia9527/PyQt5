@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="database2" uuid="2a1fa9d6-247c-4601-9b33-e31e5cfffc7f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\17251\Desktop\中科院软件研究所\python\python Qt GUI与数据可视化编程\PyQt_MyGUI\db\database2.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
