@@ -60,7 +60,7 @@ class QLabelDemo(QWidget) :
 
         label4.setToolTip('这是一个超级链接')
 
-        vbox = QVBoxLayout()
+        vbox = QVBoxLayout() #垂直布局
 
         vbox.addWidget(label1)
         vbox.addWidget(label2)
