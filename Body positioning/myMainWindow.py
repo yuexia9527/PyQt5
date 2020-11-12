@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 import matplotlib.style as mplStyle  #一个模块
 from  matplotlib.backends.backend_qt5agg import (FigureCanvas,
             NavigationToolbar2QT as NavigationToolbar)
-
 import numpy as np
 import time
 
@@ -24,7 +23,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.ui = Ui_Form()
         self.setupUi(self)
         self.init()
-        self.setWindowTitle("磁定位显示助手")
+        self.setWindowTitle("姿态信息显示助手")
         self.ser = serial.Serial()
         self.port_check()
 

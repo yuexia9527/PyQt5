@@ -263,4 +263,4 @@ class Ui_Form(object):
         self.formGroupBox_4.setTitle(_translate("Form", "发送区控制"))
         self.s3__clear_button.setText(_translate("Form", "清除发送"))
         self.hex_send.setText(_translate("Form", "Hex发送"))
-        self.groupBox.setTitle(_translate("Form", "手部信息显示"))
+        self.groupBox.setTitle(_translate("Form", "姿态信息显示"))

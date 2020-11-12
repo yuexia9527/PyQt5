@@ -564,7 +564,7 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <property name="title">
-    <string>手部信息显示</string>
+    <string>姿态信息显示</string>
    </property>
    <widget class="QWidget" name="centralWidget" native="true">
     <property name="geometry">
