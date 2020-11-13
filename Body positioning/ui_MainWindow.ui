@@ -566,13 +566,46 @@ p, li { white-space: pre-wrap; }
    <property name="title">
     <string>姿态信息显示</string>
    </property>
-   <widget class="QWidget" name="centralWidget" native="true">
+   <widget class="QWidget" name="centralWidget1" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>20</y>
-      <width>841</width>
-      <height>501</height>
+      <width>420</width>
+      <height>250</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="centralWidget2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>20</y>
+      <width>420</width>
+      <height>250</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="centralWidget3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>271</y>
+      <width>420</width>
+      <height>251</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_3" native="true">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>421</x>
+      <y>271</y>
+      <width>420</width>
+      <height>250</height>
      </rect>
     </property>
    </widget>

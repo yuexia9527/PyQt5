@@ -218,7 +218,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
     def Draw_cpu(self):
         self.main_layout = QtWidgets.QGridLayout()  # 创建一个网格布局
-        self.centralWidget.setLayout(self.main_layout)  # 设置主部件的布局为网格
+        self.centralWidget1.setLayout(self.main_layout)  # 设置主部件的布局为网格
 
         self.plot_widget = QtWidgets.QWidget()  # 实例化一个widget部件作为K线图部件
         self.plot_layout = QtWidgets.QGridLayout()  # 实例化一个网格布局层
