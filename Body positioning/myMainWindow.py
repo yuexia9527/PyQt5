@@ -2,11 +2,13 @@ import sys
 import vtk
 import serial
 import serial.tools.list_ports
-from PyQt5 import QtWidgets
-from PyQt5 import QtGui
+from PyQt5 import QtWidgets,QtGui,QtCore
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer
 from ui_MainWindow import Ui_Form
+import pyqtgraph as pg
+import traceback
+import psutil
 from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -71,6 +73,9 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
         # 清除接收窗口
         self.s2__clear_button.clicked.connect(self.receive_data_clear)
+
+        # 绘制CPU使用率曲线
+        self.Draw_cpu()
 
     # 串口检测
     def port_check(self):
@@ -211,6 +216,49 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.s2__receive_text.setText("")
 
 
+    def Draw_cpu(self):
+        self.main_layout = QtWidgets.QGridLayout()  # 创建一个网格布局
+        self.centralWidget.setLayout(self.main_layout)  # 设置主部件的布局为网格
+
+        self.plot_widget = QtWidgets.QWidget()  # 实例化一个widget部件作为K线图部件
+        self.plot_layout = QtWidgets.QGridLayout()  # 实例化一个网格布局层
+        self.plot_widget.setLayout(self.plot_layout)  # 设置K线图部件的布局层
+        self.plot_plt = pg.PlotWidget()  # 实例化一个绘图部件
+        self.plot_plt.showGrid(x=True, y=True)  # 显示图形网格
+        self.plot_layout.addWidget(self.plot_plt)  # 添加绘图部件到K线图部件的网格布局层
+        # 将上述部件添加到布局层中
+        self.main_layout.addWidget(self.plot_widget, 1, 0, 3, 3)
+
+        self.plot_plt.setYRange(max=100, min=0)
+        self.data_list = []
+        self.data_list1 = []
+        self.data_list2 = []
+        self.data_list3 = []
+        self.data_list4 = []
+        self.timer_start()
+
+    # 启动定时器 时间间隔秒
+    def timer_start(self):
+        self.timer = QtCore.QTimer(self)
+        self.timer.timeout.connect(self.get_cpu_info)
+        self.timer.start(0.1)
+
+    # 获取CPU使用率
+    def get_cpu_info(self):
+        try:
+            cpu = "%0.2f" % psutil.cpu_percent(interval=1)
+            self.data_list.append(float(cpu))
+            self.data_list1.append(float(cpu)+5)
+            self.data_list2.append(float(cpu)+10)
+            self.data_list3.append(float(cpu)+15)
+            self.data_list4.append(float(cpu)+20)
+            self.plot_plt.plot().setData(self.data_list, pen='g')
+            self.plot_plt.plot().setData(self.data_list1, pen='y')
+            self.plot_plt.plot().setData(self.data_list2, pen='r')
+            self.plot_plt.plot().setData(self.data_list3, pen='b')
+            self.plot_plt.plot().setData(self.data_list4, pen='w')
+        except Exception as e:
+            print(traceback.print_exc())
 
 if __name__ == '__main__':
 
