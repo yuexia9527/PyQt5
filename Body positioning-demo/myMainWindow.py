@@ -76,6 +76,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
         #Pose_3d
         self.Pose_3d()
+
         # 绘制CPU使用率曲线
         self.Draw_cpu()
 
@@ -218,7 +219,8 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.s2__receive_text.setText("")
 
     def Pose_3d(self):
-        self.webEngineView.load(QUrl('./pose_estimation_3d/index.html'))
+        self.browser = self.webEngineView
+        self.browser.load(QUrl('http://www.baidu.com'))
 
     def Draw_cpu(self):
 
