@@ -263,10 +263,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.main_layout3.addWidget(self.plot_widget3, 1, 0, 3, 3)
         self.main_layout4.addWidget(self.plot_widget4, 1, 0, 3, 3)
         #设置每个列表的Y轴范围
-        self.plot_plt1.setYRange(max=100, min=0)
-        self.plot_plt2.setYRange(max=100, min=0)
-        self.plot_plt3.setYRange(max=100, min=0)
-        self.plot_plt4.setYRange(max=100, min=0)
+        self.plot_plt1.setYRange(max=200, min=0)
+        self.plot_plt2.setYRange(max=200, min=0)
+        self.plot_plt3.setYRange(max=200, min=0)
+        self.plot_plt4.setYRange(max=200, min=0)
         #设置四个列表，用来存放数据
         self.data_list1 = []
         self.data_list2 = []
@@ -278,12 +278,12 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def timer_start(self):
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.get_cpu_info)
-        self.timer.start(0.1)
+        self.timer.start(0.0001)
 
     # 获取CPU使用率
     def get_cpu_info(self):
         try:
-            cpu = "%0.2f" % psutil.cpu_percent(interval=1)
+            cpu = "%0.2f" % psutil.cpu_percent(interval=0.0001)
             #设置四个数据列表，存放待显示的数据信息
             self.data_list1.append(float(cpu)+5)
             self.data_list2.append(float(cpu)+10)
