@@ -579,7 +579,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="centralWidget2" native="true">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>421</x>
       <y>20</y>
       <width>420</width>
       <height>250</height>
@@ -596,7 +596,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="widget_3" native="true">
+   <widget class="QWidget" name="centralWidget4" native="true">
     <property name="enabled">
      <bool>true</bool>
     </property>

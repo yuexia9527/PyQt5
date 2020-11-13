@@ -238,10 +238,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.plot_layout3 = QtWidgets.QGridLayout()  # 实例化一个网格布局层
         self.plot_layout4 = QtWidgets.QGridLayout()  # 实例化一个网格布局层
 
-        self.plot_widget1.setLayout(self.plot_layout)  # 设置K线图部件的布局层
-        self.plot_widget2.setLayout(self.plot_layout)  # 设置K线图部件的布局层
-        self.plot_widget3.setLayout(self.plot_layout)  # 设置K线图部件的布局层
-        self.plot_widget4.setLayout(self.plot_layout)  # 设置K线图部件的布局层
+        self.plot_widget1.setLayout(self.plot_layout1)  # 设置K线图部件的布局层
+        self.plot_widget2.setLayout(self.plot_layout2)  # 设置K线图部件的布局层
+        self.plot_widget3.setLayout(self.plot_layout3)  # 设置K线图部件的布局层
+        self.plot_widget4.setLayout(self.plot_layout4)  # 设置K线图部件的布局层
 
         self.plot_plt1 = pg.PlotWidget()  # 实例化一个绘图部件
         self.plot_plt2 = pg.PlotWidget()  # 实例化一个绘图部件
@@ -254,7 +254,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.plot_plt4.showGrid(x=True, y=True)  # 显示图形网格
 
         self.plot_layout1.addWidget(self.plot_plt1)  # 添加绘图部件到K线图部件的网格布局层
-        self.plot_layout2.addWidget(self.plot_plt3)  # 添加绘图部件到K线图部件的网格布局层
+        self.plot_layout2.addWidget(self.plot_plt2)  # 添加绘图部件到K线图部件的网格布局层
         self.plot_layout3.addWidget(self.plot_plt3)  # 添加绘图部件到K线图部件的网格布局层
         self.plot_layout4.addWidget(self.plot_plt4)  # 添加绘图部件到K线图部件的网格布局层
 
