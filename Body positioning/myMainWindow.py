@@ -252,23 +252,22 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.plot_plt2.showGrid(x=True, y=True)  # 显示图形网格
         self.plot_plt3.showGrid(x=True, y=True)  # 显示图形网格
         self.plot_plt4.showGrid(x=True, y=True)  # 显示图形网格
-
+        
         self.plot_layout1.addWidget(self.plot_plt1)  # 添加绘图部件到K线图部件的网格布局层
         self.plot_layout2.addWidget(self.plot_plt2)  # 添加绘图部件到K线图部件的网格布局层
         self.plot_layout3.addWidget(self.plot_plt3)  # 添加绘图部件到K线图部件的网格布局层
         self.plot_layout4.addWidget(self.plot_plt4)  # 添加绘图部件到K线图部件的网格布局层
-
         # 将上述部件添加到布局层中
         self.main_layout1.addWidget(self.plot_widget1, 1, 0, 3, 3)
         self.main_layout2.addWidget(self.plot_widget2, 1, 0, 3, 3)
         self.main_layout3.addWidget(self.plot_widget3, 1, 0, 3, 3)
         self.main_layout4.addWidget(self.plot_widget4, 1, 0, 3, 3)
-
+        #设置每个列表的Y轴范围
         self.plot_plt1.setYRange(max=100, min=0)
         self.plot_plt2.setYRange(max=100, min=0)
         self.plot_plt3.setYRange(max=100, min=0)
         self.plot_plt4.setYRange(max=100, min=0)
-
+        #设置四个列表，用来存放数据
         self.data_list1 = []
         self.data_list2 = []
         self.data_list3 = []
@@ -285,10 +284,12 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def get_cpu_info(self):
         try:
             cpu = "%0.2f" % psutil.cpu_percent(interval=1)
+            #设置四个数据列表，存放待显示的数据信息
             self.data_list1.append(float(cpu)+5)
             self.data_list2.append(float(cpu)+10)
             self.data_list3.append(float(cpu)+15)
             self.data_list4.append(float(cpu)+20)
+            #以不同颜色显示每个数据列表中的数据信息
             self.plot_plt1.plot().setData(self.data_list1, pen='y')
             self.plot_plt2.plot().setData(self.data_list2, pen='r')
             self.plot_plt3.plot().setData(self.data_list3, pen='b')
