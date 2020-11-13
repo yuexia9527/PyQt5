@@ -217,20 +217,58 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
 
     def Draw_cpu(self):
-        self.main_layout = QtWidgets.QGridLayout()  # 创建一个网格布局
-        self.centralWidget1.setLayout(self.main_layout)  # 设置主部件的布局为网格
 
-        self.plot_widget = QtWidgets.QWidget()  # 实例化一个widget部件作为K线图部件
-        self.plot_layout = QtWidgets.QGridLayout()  # 实例化一个网格布局层
-        self.plot_widget.setLayout(self.plot_layout)  # 设置K线图部件的布局层
-        self.plot_plt = pg.PlotWidget()  # 实例化一个绘图部件
-        self.plot_plt.showGrid(x=True, y=True)  # 显示图形网格
-        self.plot_layout.addWidget(self.plot_plt)  # 添加绘图部件到K线图部件的网格布局层
+        self.main_layout1 = QtWidgets.QGridLayout()  # 创建一个网格布局
+        self.main_layout2 = QtWidgets.QGridLayout()  # 创建一个网格布局
+        self.main_layout3 = QtWidgets.QGridLayout()  # 创建一个网格布局
+        self.main_layout4 = QtWidgets.QGridLayout()  # 创建一个网格布局
+
+        self.centralWidget1.setLayout(self.main_layout1)  # 设置主部件的布局为网格
+        self.centralWidget2.setLayout(self.main_layout2)  # 设置主部件的布局为网格
+        self.centralWidget3.setLayout(self.main_layout3)  # 设置主部件的布局为网格
+        self.centralWidget4.setLayout(self.main_layout4)  # 设置主部件的布局为网格
+
+        self.plot_widget1 = QtWidgets.QWidget()  # 实例化一个widget部件作为K线图部件
+        self.plot_widget2 = QtWidgets.QWidget()  # 实例化一个widget部件作为K线图部件
+        self.plot_widget3 = QtWidgets.QWidget()  # 实例化一个widget部件作为K线图部件
+        self.plot_widget4 = QtWidgets.QWidget()  # 实例化一个widget部件作为K线图部件
+
+        self.plot_layout1 = QtWidgets.QGridLayout()  # 实例化一个网格布局层
+        self.plot_layout2 = QtWidgets.QGridLayout()  # 实例化一个网格布局层
+        self.plot_layout3 = QtWidgets.QGridLayout()  # 实例化一个网格布局层
+        self.plot_layout4 = QtWidgets.QGridLayout()  # 实例化一个网格布局层
+
+        self.plot_widget1.setLayout(self.plot_layout)  # 设置K线图部件的布局层
+        self.plot_widget2.setLayout(self.plot_layout)  # 设置K线图部件的布局层
+        self.plot_widget3.setLayout(self.plot_layout)  # 设置K线图部件的布局层
+        self.plot_widget4.setLayout(self.plot_layout)  # 设置K线图部件的布局层
+
+        self.plot_plt1 = pg.PlotWidget()  # 实例化一个绘图部件
+        self.plot_plt2 = pg.PlotWidget()  # 实例化一个绘图部件
+        self.plot_plt3 = pg.PlotWidget()  # 实例化一个绘图部件
+        self.plot_plt4 = pg.PlotWidget()  # 实例化一个绘图部件
+
+        self.plot_plt1.showGrid(x=True, y=True)  # 显示图形网格
+        self.plot_plt2.showGrid(x=True, y=True)  # 显示图形网格
+        self.plot_plt3.showGrid(x=True, y=True)  # 显示图形网格
+        self.plot_plt4.showGrid(x=True, y=True)  # 显示图形网格
+
+        self.plot_layout1.addWidget(self.plot_plt1)  # 添加绘图部件到K线图部件的网格布局层
+        self.plot_layout2.addWidget(self.plot_plt3)  # 添加绘图部件到K线图部件的网格布局层
+        self.plot_layout3.addWidget(self.plot_plt3)  # 添加绘图部件到K线图部件的网格布局层
+        self.plot_layout4.addWidget(self.plot_plt4)  # 添加绘图部件到K线图部件的网格布局层
+
         # 将上述部件添加到布局层中
-        self.main_layout.addWidget(self.plot_widget, 1, 0, 3, 3)
+        self.main_layout1.addWidget(self.plot_widget1, 1, 0, 3, 3)
+        self.main_layout2.addWidget(self.plot_widget2, 1, 0, 3, 3)
+        self.main_layout3.addWidget(self.plot_widget3, 1, 0, 3, 3)
+        self.main_layout4.addWidget(self.plot_widget4, 1, 0, 3, 3)
 
-        self.plot_plt.setYRange(max=100, min=0)
-        self.data_list = []
+        self.plot_plt1.setYRange(max=100, min=0)
+        self.plot_plt2.setYRange(max=100, min=0)
+        self.plot_plt3.setYRange(max=100, min=0)
+        self.plot_plt4.setYRange(max=100, min=0)
+
         self.data_list1 = []
         self.data_list2 = []
         self.data_list3 = []
@@ -247,16 +285,14 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def get_cpu_info(self):
         try:
             cpu = "%0.2f" % psutil.cpu_percent(interval=1)
-            self.data_list.append(float(cpu))
             self.data_list1.append(float(cpu)+5)
             self.data_list2.append(float(cpu)+10)
             self.data_list3.append(float(cpu)+15)
             self.data_list4.append(float(cpu)+20)
-            self.plot_plt.plot().setData(self.data_list, pen='g')
-            self.plot_plt.plot().setData(self.data_list1, pen='y')
-            self.plot_plt.plot().setData(self.data_list2, pen='r')
-            self.plot_plt.plot().setData(self.data_list3, pen='b')
-            self.plot_plt.plot().setData(self.data_list4, pen='w')
+            self.plot_plt1.plot().setData(self.data_list1, pen='y')
+            self.plot_plt2.plot().setData(self.data_list2, pen='r')
+            self.plot_plt3.plot().setData(self.data_list3, pen='b')
+            self.plot_plt4.plot().setData(self.data_list4, pen='w')
         except Exception as e:
             print(traceback.print_exc())
 
