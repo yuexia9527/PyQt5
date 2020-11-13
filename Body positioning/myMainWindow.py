@@ -252,7 +252,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.plot_plt2.showGrid(x=True, y=True)  # 显示图形网格
         self.plot_plt3.showGrid(x=True, y=True)  # 显示图形网格
         self.plot_plt4.showGrid(x=True, y=True)  # 显示图形网格
-        
+
         self.plot_layout1.addWidget(self.plot_plt1)  # 添加绘图部件到K线图部件的网格布局层
         self.plot_layout2.addWidget(self.plot_plt2)  # 添加绘图部件到K线图部件的网格布局层
         self.plot_layout3.addWidget(self.plot_plt3)  # 添加绘图部件到K线图部件的网格布局层
