@@ -220,6 +220,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
     def Pose_3d(self):
         self.browser = self.webEngineView
+        #设置本地的网页地址
         self.browser.load(QUrl('http://www.baidu.com'))
 
     def Draw_cpu(self):
