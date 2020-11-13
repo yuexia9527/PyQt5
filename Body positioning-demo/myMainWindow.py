@@ -4,7 +4,7 @@ import serial
 import serial.tools.list_ports
 from PyQt5 import QtWidgets,QtGui,QtCore
 from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer,QUrl
 from ui_MainWindow import Ui_Form
 import pyqtgraph as pg
 import traceback
@@ -74,6 +74,8 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         # 清除接收窗口
         self.s2__clear_button.clicked.connect(self.receive_data_clear)
 
+        #Pose_3d
+        self.Pose_3d()
         # 绘制CPU使用率曲线
         self.Draw_cpu()
 
@@ -215,6 +217,8 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def receive_data_clear(self):
         self.s2__receive_text.setText("")
 
+    def Pose_3d(self):
+        self.webEngineView.load(QUrl('./pose_estimation_3d/index.html'))
 
     def Draw_cpu(self):
 
