@@ -278,12 +278,12 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def timer_start(self):
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.get_cpu_info)
-        self.timer.start(0.0001)
+        self.timer.start(1)
 
     # 获取CPU使用率
     def get_cpu_info(self):
         try:
-            cpu = "%0.2f" % psutil.cpu_percent(interval=0.0001)
+            cpu = "%0.2f" % psutil.cpu_percent(interval=1)
             #设置四个数据列表，存放待显示的数据信息
             self.data_list1.append(float(cpu)+5)
             self.data_list2.append(float(cpu)+10)
