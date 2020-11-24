@@ -276,9 +276,9 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
     # 启动定时器 时间间隔秒
     def timer_start(self):
-        self.timer = QtCore.QTimer(self)
-        self.timer.timeout.connect(self.get_cpu_info)
-        self.timer.start(1)
+        self.timer_draw = QtCore.QTimer(self)
+        self.timer_draw.timeout.connect(self.get_cpu_info)
+        self.timer_draw.start(1)
 
     # 获取CPU使用率
     def get_cpu_info(self):
