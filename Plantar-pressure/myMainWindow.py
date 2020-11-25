@@ -272,7 +272,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     # 将串口获取到的out_s保存到Data.txt
     def save_data(self, contents):
         self.Data += contents
-        print(self.Data)
+        #print(self.Data)
         fh = open('Data.txt', 'w')
         fh.write(self.Data)
         fh.close()
