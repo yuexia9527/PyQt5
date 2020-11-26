@@ -4,13 +4,15 @@
 import sys
 import vtk
 import serial
+import threading
 import numpy as np
 import serial.tools.list_ports
 import matplotlib.pyplot as plt
 from PyQt5.QtCore import QTimer
 from ui_MainWindow import Ui_Form
+from mpl_toolkits.mplot3d import Axes3D
 from PyQt5 import QtWidgets, QtGui, QtCore
-from PyQt5.QtWidgets import QMessageBox,QVBoxLayout
+from PyQt5.QtWidgets import QMessageBox, QVBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FC
 import time
 import psutil
@@ -39,7 +41,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.data_num_sended = 0
         self.lineEdit_2.setText(str(self.data_num_sended))
 
-        #将需要保存的数据清空
+        # 将需要保存的数据清空
         self.Data = ''
 
     def init(self):
@@ -117,7 +119,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             return None
 
         # 打开串口接收定时器，周期为2ms
-        self.timer.start(2)
+        self.timer.start(0.1)
 
         if self.ser.isOpen():
             self.open_button.setEnabled(False)
@@ -223,20 +225,25 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def receive_data_clear(self):
         self.s2__receive_text.setText("")
 
-    #用matplotlib绘制Data的主程序
+    # 用matplotlib绘制Data的主程序
     def Draw_data(self):
         # TODO:这里是结合的关键
-        self.fig = plt.Figure()
-        self.canvas = FC(self.fig)
+        self.fig1 = plt.Figure()
+        self.canvas1 = FC(self.fig1)
+        self.fig2 = plt.Figure()
+        self.canvas2 = FC(self.fig2)
 
         # 定时器绘制数据
         self.timer_draw = QTimer(self)
         self.timer_draw.timeout.connect(self.plot_start)
-        self.timer_draw.start()
+        self.timer_draw.start(0.1)
 
-        layout = QVBoxLayout()
-        layout.addWidget(self.canvas)
-        self.centralWidget1.setLayout(layout)
+        layout1 = QVBoxLayout()
+        layout1.addWidget(self.canvas1)
+        self.centralWidget1.setLayout(layout1)
+        layout2 = QVBoxLayout()
+        layout2.addWidget(self.canvas2)
+        self.centralWidget2.setLayout(layout2)
         self.plot_start()
 
     # 从保存的Data.txt文件中提取数据
@@ -244,8 +251,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         file = open("Data.txt", "r")
         list_arr = file.readlines()  # 读取数据文件的每一行
         lists = []  # 生成列表
-
-        for index, x in enumerate(list_arr[3:-3]):
+        for index, x in enumerate(list_arr[-23:-3]):
             x = x.strip()
             if x != "":
                 x = x[5:]
@@ -254,35 +260,75 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
                 lists.append(x)
         array = np.array(lists)
         array = array.astype(int)
-
         return array
 
-    #图像的绘制与更新
+    # 图像的绘制与更新
     def plot_start(self):
         try:
             array = self.extract_array()
-            ax = self.fig.add_subplot(111)
+            #自动选择需要显示的通道，0为显示全部，共有13个通道
+            self.channel_choose = int(self.comboBox.currentText())
+            ax = self.fig1.add_subplot(111)
+            # bx = self.fig2.add_subplot(111)
             ax.cla()  # TODO:删除原图，让画布上只有新的一次的图
+            # bx.cla()
             for i in range(array.shape[1]):
-                ax.plot(array[:, i])
-            self.canvas.draw()  # TODO:这里开始绘制
+                if self.channel_choose == 0:
+                    ax.plot(array[:, i])
+                else:
+                    ax.plot(array[:, self.channel_choose - 1])
+                # bx.plot(array[:, i])
+            self.canvas1.draw()    # TODO:这里开始绘制
+
+            # 生成子图对象，类型为3d
+            his_array = array[-2:-1]
+            bx = self.fig2.add_subplot(111, projection='3d')
+            bx.cla()    # TODO:删除原图，让画布上只有新的一次的图
+            # 设置x轴取值
+            xedges = np.array([10, 20, 30, 40, 50, 60, 70])
+            # 设置y轴取值
+            yedges = np.array([10, 20, 30, 40, 50, 60, 70])
+            # 设置X,Y对应点的值。即原始数据。
+            hist = np.array([[0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, his_array[:, 9], his_array[:, 3]],
+                             [0, 0, 0, his_array[:, 2], his_array[:, 8], his_array[:, 4]],
+                             [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7], his_array[:, 4]],
+                             [his_array[:, 11], his_array[:, 6], his_array[:, 10], his_array[:, 5], his_array[:, 5], 0],
+                             [0, 0, 0, 0, 0, 0]])
+            # 设置作图点的坐标
+            xpos, ypos = np.meshgrid(xedges[:-1] - 2.5, yedges[:-1] - 2.5)
+            xpos = xpos.flatten('F')
+            ypos = ypos.flatten('F')
+            zpos = np.zeros_like(xpos)
+            # 设置柱形图大小
+            dx = 5 * np.ones_like(zpos)
+            dy = dx.copy()
+            dz = hist.flatten()
+            #绘制3d图像
+            bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color='y', zsort='average')
+            self.canvas2.draw()
         except Exception as e:
-            print("图像的绘制与更新发生错误")
+            # print("图像的绘制与更新发生错误")
+            pass
 
     # 将串口获取到的out_s保存到Data.txt
     def save_data(self, contents):
         self.Data += contents
-        #print(self.Data)
+        # print(self.Data)
         fh = open('Data.txt', 'w')
         fh.write(self.Data)
         fh.close()
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     # 异常获取模块
     _oldExceptionCatch = sys.excepthook
+
+
     def _exceptionCatch(exceptionType, value, traceback):
         _oldExceptionCatch(exceptionType, value, traceback)
+
+
     # 由于Qt界面中的异常捕获不到
     # 把系统的全局异常获取函数进行重定向
     sys.excepthook = _exceptionCatch
