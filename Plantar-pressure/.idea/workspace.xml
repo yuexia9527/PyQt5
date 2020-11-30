@@ -23,7 +23,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../中科院软件研究所/python/数据分析与可视化" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -189,7 +189,10 @@
       <workItem from="1606350925501" duration="6336000" />
       <workItem from="1606357725255" duration="2177000" />
       <workItem from="1606360179226" duration="2133000" />
-      <workItem from="1606372473132" duration="685000" />
+      <workItem from="1606372473132" duration="6960000" />
+      <workItem from="1606437518373" duration="6191000" />
+      <workItem from="1606458338925" duration="736000" />
+      <workItem from="1606696363676" duration="5856000" />
     </task>
     <servers />
   </component>
@@ -201,34 +204,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1606289096100" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1606289257633">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1606698629520">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606289257633" />
-    <state width="1493" height="122" key="GridCell.Tab.0.bottom" timestamp="1606362320707">
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606698629520" />
+    <state width="1493" height="145" key="GridCell.Tab.0.bottom" timestamp="1606702441661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="122" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606362320707" />
-    <state width="1493" height="122" key="GridCell.Tab.0.center" timestamp="1606362320707">
+    <state width="1493" height="145" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606702441661" />
+    <state width="1493" height="145" key="GridCell.Tab.0.center" timestamp="1606702441660">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="122" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606362320707" />
-    <state width="1493" height="122" key="GridCell.Tab.0.left" timestamp="1606362320707">
+    <state width="1493" height="145" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606702441660" />
+    <state width="1493" height="145" key="GridCell.Tab.0.left" timestamp="1606702441660">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="122" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606362320707" />
-    <state width="1493" height="122" key="GridCell.Tab.0.right" timestamp="1606362320707">
+    <state width="1493" height="145" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606702441660" />
+    <state width="1493" height="145" key="GridCell.Tab.0.right" timestamp="1606702441661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="122" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606362320707" />
+    <state width="1493" height="145" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606702441661" />
     <state x="270" y="55" key="SettingsEditor" timestamp="1606182716791">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606182716791" />
-    <state x="449" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1606372475621">
+    <state x="449" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1606696368342">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="449" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1606372475621" />
+    <state x="449" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1606696368342" />
     <state x="425" y="66" width="672" height="676" key="search.everywhere.popup" timestamp="1606352650811">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -240,9 +243,9 @@
     <SUITE FILE_PATH="coverage/Plantar_pressure$extract_array__1_.coverage" NAME="extract_array (1) Coverage Results" MODIFIED="1606287313609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Plantar_pressure$Draw_data_demo.coverage" NAME="Draw_data_demo Coverage Results" MODIFIED="1606291969008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Plantar_pressure$test.coverage" NAME="test Coverage Results" MODIFIED="1606353362705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Plantar_pressure$myMainWindow.coverage" NAME="myMainWindow Coverage Results" MODIFIED="1606373313812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Plantar_pressure$myMainWindow.coverage" NAME="myMainWindow Coverage Results" MODIFIED="1606702441651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Plantar_pressure$appMain.coverage" NAME="appMain Coverage Results" MODIFIED="1606301805888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Plantar_pressure$Histogram__1_.coverage" NAME="Histogram (1) Coverage Results" MODIFIED="1606358921889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Plantar_pressure$Histogram__1_.coverage" NAME="Histogram (1) Coverage Results" MODIFIED="1606440531900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Plantar_pressure$Mainwindow.coverage" NAME="Mainwindow Coverage Results" MODIFIED="1606288661836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

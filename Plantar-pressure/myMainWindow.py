@@ -238,6 +238,11 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.timer_draw.timeout.connect(self.plot_start)
         self.timer_draw.start(0.1)
 
+        # 定时器绘制数据
+        self.timer_draw_3d = QTimer(self)
+        self.timer_draw_3d.timeout.connect(self.plot_start_3d)
+        self.timer_draw_3d.start(0.1)
+
         layout1 = QVBoxLayout()
         layout1.addWidget(self.canvas1)
         self.centralWidget1.setLayout(layout1)
@@ -266,24 +271,27 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def plot_start(self):
         try:
             array = self.extract_array()
-            #自动选择需要显示的通道，0为显示全部，共有13个通道
+            # 自动选择需要显示的通道，0为显示全部，共有13个通道
             self.channel_choose = int(self.comboBox.currentText())
             ax = self.fig1.add_subplot(111)
-            # bx = self.fig2.add_subplot(111)
             ax.cla()  # TODO:删除原图，让画布上只有新的一次的图
-            # bx.cla()
             for i in range(array.shape[1]):
                 if self.channel_choose == 0:
                     ax.plot(array[:, i])
                 else:
                     ax.plot(array[:, self.channel_choose - 1])
-                # bx.plot(array[:, i])
-            self.canvas1.draw()    # TODO:这里开始绘制
+            self.canvas1.draw()  # TODO:这里开始绘制
+        except Exception as e:
+            pass
 
+    # 3d图像的绘制与更新
+    def plot_start_3d(self):
+        try:
+            array_3d = self.extract_array()
             # 生成子图对象，类型为3d
-            his_array = array[-2:-1]
+            his_array = array_3d[-2:-1]
             bx = self.fig2.add_subplot(111, projection='3d')
-            bx.cla()    # TODO:删除原图，让画布上只有新的一次的图
+            bx.cla()  # TODO:删除原图，让画布上只有新的一次的图
             # 设置x轴取值
             xedges = np.array([10, 20, 30, 40, 50, 60, 70])
             # 设置y轴取值
@@ -292,7 +300,8 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             hist = np.array([[0, 0, 0, 0, 0, 0],
                              [0, 0, 0, 0, his_array[:, 9], his_array[:, 3]],
                              [0, 0, 0, his_array[:, 2], his_array[:, 8], his_array[:, 4]],
-                             [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7], his_array[:, 4]],
+                             [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7],
+                              his_array[:, 4]],
                              [his_array[:, 11], his_array[:, 6], his_array[:, 10], his_array[:, 5], his_array[:, 5], 0],
                              [0, 0, 0, 0, 0, 0]])
             # 设置作图点的坐标
@@ -304,11 +313,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             dx = 5 * np.ones_like(zpos)
             dy = dx.copy()
             dz = hist.flatten()
-            #绘制3d图像
+            # 绘制3d图像
             bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color='y', zsort='average')
             self.canvas2.draw()
         except Exception as e:
-            # print("图像的绘制与更新发生错误")
             pass
 
     # 将串口获取到的out_s保存到Data.txt
@@ -321,11 +329,14 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
 
 if __name__ == '__main__':
-    
     # 异常获取模块
     _oldExceptionCatch = sys.excepthook
+
+
     def _exceptionCatch(exceptionType, value, traceback):
         _oldExceptionCatch(exceptionType, value, traceback)
+
+
     # 由于Qt界面中的异常捕获不到
     # 把系统的全局异常获取函数进行重定向
     sys.excepthook = _exceptionCatch
@@ -334,4 +345,14 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     myshow = Pyqt5_Serial()
     myshow.show()
+
+    add_thread1 = threading.Thread(target=Pyqt5_Serial().data_receive())
+    add_thread1.start()
+    add_thread2 = threading.Thread(target=Pyqt5_Serial().extract_array())
+    add_thread2.start()
+    add_thread3 = threading.Thread(target=Pyqt5_Serial().plot_start())
+    add_thread3.start()
+    add_thread4 = threading.Thread(target=Pyqt5_Serial().plot_start_3d())
+    add_thread4.start()
+
     sys.exit(app.exec_())
