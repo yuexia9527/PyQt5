@@ -348,5 +348,4 @@ class Ui_Form(object):
         self.open_button.setText(_translate("Form", "打开串口"))
         self.close_button.setText(_translate("Form", "关闭串口"))
         self.groupBox_2.setTitle(_translate("Form", "人体姿态三维显示"))
-
 from PyQt5 import QtWebEngineWidgets
