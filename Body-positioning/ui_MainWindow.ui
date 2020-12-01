@@ -470,7 +470,7 @@ p, li { white-space: pre-wrap; }
     </size>
    </property>
    <property name="title">
-    <string>足底压三维显示</string>
+    <string>人体姿态三维显示</string>
    </property>
    <widget class="QWidget" name="centralWidget2" native="true">
     <property name="geometry">
@@ -499,7 +499,7 @@ p, li { white-space: pre-wrap; }
     </size>
    </property>
    <property name="title">
-    <string>足底压信息显示</string>
+    <string>人体姿态信息显示</string>
    </property>
    <widget class="QWidget" name="centralWidget1" native="true">
     <property name="geometry">
