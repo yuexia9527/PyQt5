@@ -9,16 +9,15 @@ def extract_array():
     list_arr = file.readlines()  # 读取数据文件的每一行
     lists = []  # 生成列表
 
-    for index, x in enumerate(list_arr[3:-3]):
+    for index, x in enumerate(list_arr[-43:-3]):
         x = x.strip()
         if x != "":
-            x = x[5:]
+            x = x[5:-1]
             x = x.strip('[]')
-            x = x.split(" ")
+            x = x.split(",")
             lists.append(x)
     array = np.array(lists)
     array = array.astype(int)
-
     return array
 
 

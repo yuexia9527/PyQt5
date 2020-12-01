@@ -31,7 +31,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.ui = Ui_Form()
         self.setupUi(self)
         self.init()
-        self.setWindowTitle("足底压信息显示助手")
+        self.setWindowTitle("人体姿态信息显示助手")
         self.ser = serial.Serial()
         self.port_check()
 
@@ -256,12 +256,12 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         file = open("Data.txt", "r")
         list_arr = file.readlines()  # 读取数据文件的每一行
         lists = []  # 生成列表
-        for index, x in enumerate(list_arr[-23:-3]):
+        for index, x in enumerate(list_arr[-43:-3]):
             x = x.strip()
             if x != "":
-                x = x[5:]
+                x = x[5:-1]
                 x = x.strip('[]')
-                x = x.split(" ")
+                x = x.split(",")
                 lists.append(x)
         array = np.array(lists)
         array = array.astype(int)
@@ -288,34 +288,34 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def plot_start_3d(self):
         try:
             array_3d = self.extract_array()
-            # 生成子图对象，类型为3d
-            his_array = array_3d[-2:-1]
-            bx = self.fig2.add_subplot(111, projection='3d')
-            bx.cla()  # TODO:删除原图，让画布上只有新的一次的图
-            # 设置x轴取值
-            xedges = np.array([10, 20, 30, 40, 50, 60, 70])
-            # 设置y轴取值
-            yedges = np.array([10, 20, 30, 40, 50, 60, 70])
-            # 设置X,Y对应点的值。即原始数据。
-            hist = np.array([[0, 0, 0, 0, 0, 0],
-                             [0, 0, 0, 0, his_array[:, 9], his_array[:, 3]],
-                             [0, 0, 0, his_array[:, 2], his_array[:, 8], his_array[:, 4]],
-                             [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7],
-                              his_array[:, 4]],
-                             [his_array[:, 11], his_array[:, 6], his_array[:, 10], his_array[:, 5], his_array[:, 5], 0],
-                             [0, 0, 0, 0, 0, 0]])
-            # 设置作图点的坐标
-            xpos, ypos = np.meshgrid(xedges[:-1] - 2.5, yedges[:-1] - 2.5)
-            xpos = xpos.flatten('F')
-            ypos = ypos.flatten('F')
-            zpos = np.zeros_like(xpos)
-            # 设置柱形图大小
-            dx = 5 * np.ones_like(zpos)
-            dy = dx.copy()
-            dz = hist.flatten()
-            # 绘制3d图像
-            bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color='y', zsort='average')
-            self.canvas2.draw()
+            # # 生成子图对象，类型为3d
+            # his_array = array_3d[-2:-1]
+            # bx = self.fig2.add_subplot(111, projection='3d')
+            # bx.cla()  # TODO:删除原图，让画布上只有新的一次的图
+            # # 设置x轴取值
+            # xedges = np.array([10, 20, 30, 40, 50, 60, 70])
+            # # 设置y轴取值
+            # yedges = np.array([10, 20, 30, 40, 50, 60, 70])
+            # # 设置X,Y对应点的值。即原始数据。
+            # hist = np.array([[0, 0, 0, 0, 0, 0],
+            #                  [0, 0, 0, 0, his_array[:, 9], his_array[:, 3]],
+            #                  [0, 0, 0, his_array[:, 2], his_array[:, 8], his_array[:, 4]],
+            #                  [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7],
+            #                   his_array[:, 4]],
+            #                  [his_array[:, 11], his_array[:, 6], his_array[:, 10], his_array[:, 5], his_array[:, 5], 0],
+            #                  [0, 0, 0, 0, 0, 0]])
+            # # 设置作图点的坐标
+            # xpos, ypos = np.meshgrid(xedges[:-1] - 2.5, yedges[:-1] - 2.5)
+            # xpos = xpos.flatten('F')
+            # ypos = ypos.flatten('F')
+            # zpos = np.zeros_like(xpos)
+            # # 设置柱形图大小
+            # dx = 5 * np.ones_like(zpos)
+            # dy = dx.copy()
+            # dz = hist.flatten()
+            # # 绘制3d图像
+            # bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color='y', zsort='average')
+            # self.canvas2.draw()
         except Exception as e:
             pass
 
