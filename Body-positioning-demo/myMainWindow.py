@@ -238,7 +238,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
         # 定时器绘制数据
         self.timer_draw_3d = QTimer(self)
-        self.timer_draw_3d.timeout.connect(self.plot_start_3d)
+        self.timer_draw_3d.timeout.connect(self.pose_estimation_3d)
         self.timer_draw_3d.start(0.1)
 
         layout = QVBoxLayout()
@@ -280,11 +280,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             pass
 
     # 3d图像的绘制与更新
-    def plot_start_3d(self):
+    def pose_estimation_3d(self):
         try:
-            self.browser = self.webEngineView
             # 加载外部的web界面
-            self.browser.load(QUrl('https://www.baidu.com'))
+            self.webEngineView.load(QUrl('https://www.baidu.com'))
         except Exception as e:
             pass
 

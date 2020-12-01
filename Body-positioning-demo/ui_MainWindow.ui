@@ -472,7 +472,7 @@ p, li { white-space: pre-wrap; }
    <property name="title">
     <string>人体姿态三维显示</string>
    </property>
-   <widget class="QWebEngineView" name="webEngineView1">
+   <widget class="QWebEngineView" name="webEngineView">
     <property name="geometry">
      <rect>
       <x>10</x>
