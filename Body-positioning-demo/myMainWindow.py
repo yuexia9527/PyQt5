@@ -236,10 +236,11 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.timer_draw.timeout.connect(self.plot_start)
         self.timer_draw.start(0.1)
 
-        # 定时器绘制数据
-        self.timer_draw_3d = QTimer(self)
-        self.timer_draw_3d.timeout.connect(self.pose_estimation_3d)
-        self.timer_draw_3d.start(0.1)
+        # # 定时器绘制数据
+        # self.timer_draw_3d = QTimer(self)
+        # self.timer_draw_3d.timeout.connect(self.pose_estimation_3d)
+        # self.timer_draw_3d.start(0.1)
+        self.pose_estimation_3d()
 
         layout = QVBoxLayout()
         layout.addWidget(self.canvas)
@@ -283,7 +284,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def pose_estimation_3d(self):
         try:
             # 加载外部的web界面
-            self.webEngineView.load(QUrl('https://www.baidu.com'))
+            # self.webEngineView.load(QUrl("http://www.baidu.com"))
+            self.webEngineView.load(QUrl(
+                "http://localhost:63343/tfjs_webgl_app-master/pose_estimation_3d/index.html?_ijt=ojhj9fnlhvqu3f0k032t4hli3h"))
+            self.webEngineView.show()
         except Exception as e:
             pass
 

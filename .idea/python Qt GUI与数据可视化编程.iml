@@ -5,15 +5,13 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MyQt/Mysrc/day01" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MyQt/MyGUI" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pyserial_Demo" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MyQt/PyQt_MyGUI" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MyTVTK/day01" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MyTVTK/day02" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pyserial-Demo-master" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Magnetic positioning-demo/Magnetic/Pyserial-Demo-master" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Magnetic positioning-demo" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Body positioning-demo" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Body-positioning" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Body-positioning-demo" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (python Qt GUI与数据可视化编程)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
