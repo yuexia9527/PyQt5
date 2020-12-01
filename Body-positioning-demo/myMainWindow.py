@@ -10,6 +10,7 @@ import serial.tools.list_ports
 import matplotlib.pyplot as plt
 from PyQt5.QtCore import QTimer
 from ui_MainWindow import Ui_Form
+from PyQt5.QtWebEngineWidgets import *
 from mpl_toolkits.mplot3d import Axes3D
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QMessageBox, QVBoxLayout
@@ -240,7 +241,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
         # 定时器绘制数据
         self.timer_draw_3d = QTimer(self)
-        self.timer_draw_3d.timeout.connect(self.plot_start_3d)
+        self.timer_draw_3d.timeout.connect(self.pose_estimation_3d)
         self.timer_draw_3d.start(0.1)
 
         layout1 = QVBoxLayout()
@@ -285,37 +286,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             pass
 
     # 3d图像的绘制与更新
-    def plot_start_3d(self):
+    def pose_estimation_3d(self):
         try:
-            array_3d = self.extract_array()
-            # # 生成子图对象，类型为3d
-            # his_array = array_3d[-2:-1]
-            # bx = self.fig2.add_subplot(111, projection='3d')
-            # bx.cla()  # TODO:删除原图，让画布上只有新的一次的图
-            # # 设置x轴取值
-            # xedges = np.array([10, 20, 30, 40, 50, 60, 70])
-            # # 设置y轴取值
-            # yedges = np.array([10, 20, 30, 40, 50, 60, 70])
-            # # 设置X,Y对应点的值。即原始数据。
-            # hist = np.array([[0, 0, 0, 0, 0, 0],
-            #                  [0, 0, 0, 0, his_array[:, 9], his_array[:, 3]],
-            #                  [0, 0, 0, his_array[:, 2], his_array[:, 8], his_array[:, 4]],
-            #                  [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7],
-            #                   his_array[:, 4]],
-            #                  [his_array[:, 11], his_array[:, 6], his_array[:, 10], his_array[:, 5], his_array[:, 5], 0],
-            #                  [0, 0, 0, 0, 0, 0]])
-            # # 设置作图点的坐标
-            # xpos, ypos = np.meshgrid(xedges[:-1] - 2.5, yedges[:-1] - 2.5)
-            # xpos = xpos.flatten('F')
-            # ypos = ypos.flatten('F')
-            # zpos = np.zeros_like(xpos)
-            # # 设置柱形图大小
-            # dx = 5 * np.ones_like(zpos)
-            # dy = dx.copy()
-            # dz = hist.flatten()
-            # # 绘制3d图像
-            # bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color='y', zsort='average')
-            # self.canvas2.draw()
+            # 加载外部的web界面
+            self.browser.load(QUrl('https://www.baidu.com'))
         except Exception as e:
             pass
 
