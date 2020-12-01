@@ -454,46 +454,12 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
-   <property name="geometry">
-    <rect>
-     <x>1126</x>
-     <y>10</y>
-     <width>621</width>
-     <height>781</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>351</width>
-     <height>751</height>
-    </size>
-   </property>
-   <property name="title">
-    <string>人体姿态三维显示</string>
-   </property>
-   <widget class="QWebEngineView" name="webEngineView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>601</width>
-      <height>751</height>
-     </rect>
-    </property>
-    <property name="url">
-     <url>
-      <string>about:blank</string>
-     </url>
-    </property>
-   </widget>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>278</x>
      <y>10</y>
-     <width>841</width>
+     <width>851</width>
      <height>521</height>
     </rect>
    </property>
@@ -511,7 +477,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>12</x>
       <y>27</y>
-      <width>817</width>
+      <width>831</width>
       <height>482</height>
      </rect>
     </property>
@@ -528,7 +494,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>10</x>
      <y>764</y>
-     <width>1111</width>
+     <width>1121</width>
      <height>21</height>
     </rect>
    </property>
@@ -935,6 +901,34 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
     </layout>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>1140</x>
+     <y>10</y>
+     <width>601</width>
+     <height>781</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>人体姿态三维显示</string>
+   </property>
+   <widget class="QWebEngineView" name="webEngineView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>581</width>
+      <height>751</height>
+     </rect>
+    </property>
+    <property name="url">
+     <url>
+      <string>about:blank</string>
+     </url>
+    </property>
    </widget>
   </widget>
  </widget>

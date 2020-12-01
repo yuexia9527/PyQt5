@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from PyQt5.QtCore import QTimer, QUrl
 from ui_MainWindow import Ui_Form
 from mpl_toolkits.mplot3d import Axes3D
-from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5 import QtWidgets, QtGui, QtCore, QtWebEngineWidgets
 from PyQt5.QtWidgets import QMessageBox, QVBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FC
 import time
