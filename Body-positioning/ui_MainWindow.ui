@@ -688,6 +688,11 @@ p, li { white-space: pre-wrap; }
        </property>
        <item>
         <property name="text">
+         <string>115200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>19200</string>
         </property>
        </item>
@@ -729,11 +734,6 @@ p, li { white-space: pre-wrap; }
        <item>
         <property name="text">
          <string>12800</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>115200</string>
         </property>
        </item>
        <item>
