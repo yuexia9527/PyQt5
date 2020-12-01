@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1483</width>
-    <height>790</height>
+    <width>1750</width>
+    <height>792</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -459,8 +459,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>1126</x>
      <y>10</y>
-     <width>351</width>
-     <height>751</height>
+     <width>621</width>
+     <height>781</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -472,14 +472,19 @@ p, li { white-space: pre-wrap; }
    <property name="title">
     <string>人体姿态三维显示</string>
    </property>
-   <widget class="QWidget" name="centralWidget2" native="true">
+   <widget class="QWebEngineView" name="webEngineView">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>331</width>
-      <height>721</height>
+      <width>601</width>
+      <height>751</height>
      </rect>
+    </property>
+    <property name="url">
+     <url>
+      <string>about:blank</string>
+     </url>
     </property>
    </widget>
   </widget>
@@ -522,9 +527,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>768</y>
-     <width>1471</width>
-     <height>17</height>
+     <y>764</y>
+     <width>1111</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -933,6 +938,13 @@ p, li { white-space: pre-wrap; }
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

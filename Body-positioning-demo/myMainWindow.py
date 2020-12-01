@@ -8,7 +8,7 @@ import threading
 import numpy as np
 import serial.tools.list_ports
 import matplotlib.pyplot as plt
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, QUrl
 from ui_MainWindow import Ui_Form
 from mpl_toolkits.mplot3d import Axes3D
 from PyQt5 import QtWidgets, QtGui, QtCore
@@ -50,7 +50,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.setWindowIcon(QtGui.QIcon('./QtApp/images/11.ico'))
 
         # 设置主窗口的位置
-        self.setGeometry(200, 120, 1500, 800)
+        self.setGeometry(80, 120, 1750, 800)
 
         # 串口检测按钮
         self.s1__box_1.clicked.connect(self.port_check)
@@ -228,10 +228,8 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     # 用matplotlib绘制Data的主程序
     def Draw_data(self):
         # TODO:这里是结合的关键
-        self.fig1 = plt.Figure()
-        self.canvas1 = FC(self.fig1)
-        self.fig2 = plt.Figure()
-        self.canvas2 = FC(self.fig2)
+        self.fig = plt.Figure()
+        self.canvas = FC(self.fig)
 
         # 定时器绘制数据
         self.timer_draw = QTimer(self)
@@ -243,12 +241,9 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.timer_draw_3d.timeout.connect(self.plot_start_3d)
         self.timer_draw_3d.start(0.1)
 
-        layout1 = QVBoxLayout()
-        layout1.addWidget(self.canvas1)
-        self.centralWidget1.setLayout(layout1)
-        layout2 = QVBoxLayout()
-        layout2.addWidget(self.canvas2)
-        self.centralWidget2.setLayout(layout2)
+        layout = QVBoxLayout()
+        layout.addWidget(self.canvas)
+        self.centralWidget1.setLayout(layout)
         self.plot_start()
 
     # 从保存的Data.txt文件中提取数据
@@ -272,50 +267,23 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         try:
             array = self.extract_array()
             # 自动选择需要显示的通道，0为显示全部，共有13个通道
-            self.channel_choose = int(self.comboBox.currentText())
-            ax = self.fig1.add_subplot(111)
+            self.channe_choose = int(self.comboBox.currentText())
+            ax = self.fig.add_subplot(111)
             ax.cla()  # TODO:删除原图，让画布上只有新的一次的图
             for i in range(array.shape[1]):
-                if self.channel_choose == 0:
+                if self.channe_choose == 0:
                     ax.plot(array[:, i])
                 else:
-                    ax.plot(array[:, self.channel_choose - 1])
-            self.canvas1.draw()  # TODO:这里开始绘制
+                    ax.plot(array[:, self.channe_choose - 1])
+            self.canvas.draw()  # TODO:这里开始绘制
         except Exception as e:
             pass
 
     # 3d图像的绘制与更新
     def plot_start_3d(self):
         try:
-            array_3d = self.extract_array()
-            # # 生成子图对象，类型为3d
-            # his_array = array_3d[-2:-1]
-            # bx = self.fig2.add_subplot(111, projection='3d')
-            # bx.cla()  # TODO:删除原图，让画布上只有新的一次的图
-            # # 设置x轴取值
-            # xedges = np.array([10, 20, 30, 40, 50, 60, 70])
-            # # 设置y轴取值
-            # yedges = np.array([10, 20, 30, 40, 50, 60, 70])
-            # # 设置X,Y对应点的值。即原始数据。
-            # hist = np.array([[0, 0, 0, 0, 0, 0],
-            #                  [0, 0, 0, 0, his_array[:, 9], his_array[:, 3]],
-            #                  [0, 0, 0, his_array[:, 2], his_array[:, 8], his_array[:, 4]],
-            #                  [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7],
-            #                   his_array[:, 4]],
-            #                  [his_array[:, 11], his_array[:, 6], his_array[:, 10], his_array[:, 5], his_array[:, 5], 0],
-            #                  [0, 0, 0, 0, 0, 0]])
-            # # 设置作图点的坐标
-            # xpos, ypos = np.meshgrid(xedges[:-1] - 2.5, yedges[:-1] - 2.5)
-            # xpos = xpos.flatten('F')
-            # ypos = ypos.flatten('F')
-            # zpos = np.zeros_like(xpos)
-            # # 设置柱形图大小
-            # dx = 5 * np.ones_like(zpos)
-            # dy = dx.copy()
-            # dz = hist.flatten()
-            # # 绘制3d图像
-            # bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color='y', zsort='average')
-            # self.canvas2.draw()
+            # 加载外部的web界面
+            self.webEngineView.load(QUrl('https://www.baidu.com'))
         except Exception as e:
             pass
 
