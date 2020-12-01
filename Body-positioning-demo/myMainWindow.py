@@ -320,7 +320,7 @@ if __name__ == '__main__':
     add_thread2.start()
     add_thread3 = threading.Thread(target=Pyqt5_Serial().plot_start())
     add_thread3.start()
-    add_thread4 = threading.Thread(target=Pyqt5_Serial().plot_start_3d())
+    add_thread4 = threading.Thread(target=Pyqt5_Serial().pose_estimation_3d())
     add_thread4.start()
 
     sys.exit(app.exec_())
