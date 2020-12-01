@@ -282,8 +282,9 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     # 3d图像的绘制与更新
     def plot_start_3d(self):
         try:
+            self.browser = self.webEngineView
             # 加载外部的web界面
-            self.webEngineView.load(QUrl('https://www.baidu.com'))
+            self.browser.load(QUrl('https://www.baidu.com'))
         except Exception as e:
             pass
 
