@@ -256,7 +256,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         file = open("Data.txt", "r")
         list_arr = file.readlines()  # 读取数据文件的每一行
         lists = []  # 生成列表
-        for index, x in enumerate(list_arr[-23:-3]):
+        for index, x in enumerate(list_arr[-43:-3]):
             x = x.strip()
             if x != "":
                 x = x[5:]
