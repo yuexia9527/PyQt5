@@ -8,7 +8,7 @@ import threading
 import numpy as np
 import serial.tools.list_ports
 import matplotlib.pyplot as plt
-from PyQt5.QtCore import QTimer, QUrl
+from PyQt5.QtCore import QTimer, QUrl, QFileInfo
 from ui_MainWindow import Ui_Form
 from mpl_toolkits.mplot3d import Axes3D
 from PyQt5 import QtWidgets, QtGui, QtCore, QtWebEngineWidgets
@@ -124,7 +124,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         if self.ser.isOpen():
             self.open_button.setEnabled(False)
             self.close_button.setEnabled(True)
-            self.formGroupBox1.setTitle("串口状态（已开启）")
+            self.formGroupBox_2.setTitle("串口状态（已开启）")
 
     # 关闭串口
     def port_close(self):
@@ -142,7 +142,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.lineEdit.setText(str(self.data_num_received))
         self.data_num_sended = 0
         self.lineEdit_2.setText(str(self.data_num_sended))
-        self.formGroupBox1.setTitle("串口状态（已关闭）")
+        self.formGroupBox_2.setTitle("串口状态（已关闭）")
 
     # 发送数据
     def data_send(self):
@@ -284,10 +284,10 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def pose_estimation_3d(self):
         try:
             # 加载外部的web界面
-            # self.webEngineView.load(QUrl("http://www.baidu.com"))
-            self.webEngineView.load(QUrl(
-                "http://localhost:63343/tfjs_webgl_app-master/pose_estimation_3d/index.html?_ijt=ojhj9fnlhvqu3f0k032t4hli3h"))
-            self.webEngineView.show()
+            pass
+            # self.webEngineView.load(QUrl(
+            #     "http://localhost:63343/tfjs_webgl_app-master/pose_estimation_3d/index.html?_ijt=ojhj9fnlhvqu3f0k032t4hli3h"))
+            # self.webEngineView.show()
         except Exception as e:
             pass
 
