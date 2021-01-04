@@ -286,8 +286,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             # 加载外部的web界面
             self.webEngineView.load(QUrl("http://www.baidu.com"))
             self.webEngineView.show()
-            # self.webEngineView.load(QUrl(
-            #     "http://localhost:63343/tfjs_webgl_app-master/pose_estimation_3d/index.html?_ijt=ojhj9fnlhvqu3f0k032t4hli3h"))
+            # self.webEngineView.load(QUrl(QFileInfo("G:/Javascript/tfjs_webgl_app-master/pose_estimation_3d/index.html").filePath()))
             # self.webEngineView.show()
         except Exception as e:
             pass

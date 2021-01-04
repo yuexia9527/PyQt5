@@ -6,7 +6,6 @@
 
 
 '''
-
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIntValidator,QDoubleValidator, QRegExpValidator
 from PyQt5.QtCore import QRegExp

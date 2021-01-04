@@ -6,13 +6,15 @@ import vtk
 import serial
 import threading
 import numpy as np
+import matplotlib.cm as cm
 import serial.tools.list_ports
 import matplotlib.pyplot as plt
 from PyQt5.QtCore import QTimer
 from ui_MainWindow import Ui_Form
+import matplotlib.colors as colors
 from mpl_toolkits.mplot3d import Axes3D
 from PyQt5 import QtWidgets, QtGui, QtCore
-from PyQt5.QtWidgets import QMessageBox, QVBoxLayout
+from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QDesktopWidget
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FC
 import time
 import psutil
@@ -41,7 +43,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         self.data_num_sended = 0
         self.lineEdit_2.setText(str(self.data_num_sended))
 
-        # 将需要保存的数据清空
+        # 将需要保存的数据字符串清空
         self.Data = ''
 
     def init(self):
@@ -236,12 +238,12 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
         # 定时器绘制数据
         self.timer_draw = QTimer(self)
         self.timer_draw.timeout.connect(self.plot_start)
-        self.timer_draw.start(0.1)
+        self.timer_draw.start(0.01)
 
         # 定时器绘制数据
         self.timer_draw_3d = QTimer(self)
         self.timer_draw_3d.timeout.connect(self.plot_start_3d)
-        self.timer_draw_3d.start(0.1)
+        self.timer_draw_3d.start(0.01)
 
         layout1 = QVBoxLayout()
         layout1.addWidget(self.canvas1)
@@ -298,11 +300,13 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             yedges = np.array([10, 20, 30, 40, 50, 60, 70])
             # 设置X,Y对应点的值。即原始数据。
             hist = np.array([[0, 0, 0, 0, 0, 0],
-                             [0, 0, 0, 0, his_array[:, 9], his_array[:, 3]],
-                             [0, 0, 0, his_array[:, 2], his_array[:, 8], his_array[:, 4]],
-                             [his_array[:, 0], his_array[:, 12], his_array[:, 1], his_array[:, 7], his_array[:, 7],
-                              his_array[:, 4]],
-                             [his_array[:, 11], his_array[:, 6], his_array[:, 10], his_array[:, 5], his_array[:, 5], 0],
+                             [0, 0, 0, 0, his_array[:, 9] - 894, his_array[:, 3] - 804],
+                             [0, 0, 0, his_array[:, 2] - 804, his_array[:, 8] - 827, his_array[:, 4] - 868],
+                             [his_array[:, 0] - 851, his_array[:, 12] - 827, his_array[:, 1] - 683,
+                              his_array[:, 7] - 1353, his_array[:, 7] - 1353,
+                              his_array[:, 4] - 868],
+                             [his_array[:, 11] - 859, his_array[:, 6] - 843, his_array[:, 10] - 1193,
+                              his_array[:, 5] - 1133, his_array[:, 5] - 1133, 0],
                              [0, 0, 0, 0, 0, 0]])
             # 设置作图点的坐标
             xpos, ypos = np.meshgrid(xedges[:-1] - 2.5, yedges[:-1] - 2.5)
@@ -313,8 +317,14 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
             dx = 5 * np.ones_like(zpos)
             dy = dx.copy()
             dz = hist.flatten()
+            bx.set_zlim(0, 500)
+            # 设置颜色对应
+            offset = dz + np.abs(dz.min())
+            fracs = offset.astype(float) / offset.max()
+            norm = colors.Normalize(fracs.min(), fracs.max())
+            color_values = cm.jet(norm(fracs.tolist()))
             # 绘制3d图像
-            bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color='y', zsort='average')
+            bx.bar3d(xpos, ypos, zpos, dx, dy, dz, color=color_values, zsort='average')
             self.canvas2.draw()
         except Exception as e:
             pass
@@ -346,13 +356,13 @@ if __name__ == '__main__':
     myshow = Pyqt5_Serial()
     myshow.show()
 
-    add_thread1 = threading.Thread(target=Pyqt5_Serial().data_receive())
+    add_thread1 = threading.Thread(target=myshow.data_receive())
     add_thread1.start()
-    add_thread2 = threading.Thread(target=Pyqt5_Serial().extract_array())
+    add_thread2 = threading.Thread(target=myshow.extract_array())
     add_thread2.start()
-    add_thread3 = threading.Thread(target=Pyqt5_Serial().plot_start())
+    add_thread3 = threading.Thread(target=myshow.plot_start())
     add_thread3.start()
-    add_thread4 = threading.Thread(target=Pyqt5_Serial().plot_start_3d())
+    add_thread4 = threading.Thread(target=myshow.plot_start_3d())
     add_thread4.start()
 
     sys.exit(app.exec_())
