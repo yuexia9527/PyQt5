@@ -5,9 +5,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 from myMainWindow import Pyqt5_Serial
-import matplotlib.pyplot as plt
-import numpy as np
-import time
 
 if __name__ == '__main__':
 

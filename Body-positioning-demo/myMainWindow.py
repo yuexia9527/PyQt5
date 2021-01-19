@@ -47,7 +47,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def init(self):
 
         # 设置主窗口图标
-        self.setWindowIcon(QtGui.QIcon('./QtApp/images/11.ico'))
+        self.setWindowIcon(QtGui.QIcon('Body-positioning-demo/QtApp/images/11.ico'))
 
         # 设置主窗口的位置
         self.setGeometry(80, 120, 1750, 800)
@@ -249,7 +249,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
 
     # 从保存的Data.txt文件中提取数据
     def extract_array(self):
-        file = open("Data.txt", "r")
+        file = open("Body-positioning-demo/Data.txt", "r")
         list_arr = file.readlines()  # 读取数据文件的每一行
         lists = []  # 生成列表
         for index, x in enumerate(list_arr[-43:-3]):
@@ -295,7 +295,7 @@ class Pyqt5_Serial(QtWidgets.QWidget, Ui_Form):
     def save_data(self, contents):
         self.Data += contents
         # print(self.Data)
-        fh = open('Data.txt', 'w')
+        fh = open('Body-positioning-demo/Data.txt', 'w')
         fh.write(self.Data)
         fh.close()
 
@@ -317,14 +317,5 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     myshow = Pyqt5_Serial()
     myshow.show()
-
-    add_thread1 = threading.Thread(target=Pyqt5_Serial().data_receive())
-    add_thread1.start()
-    add_thread2 = threading.Thread(target=Pyqt5_Serial().extract_array())
-    add_thread2.start()
-    add_thread3 = threading.Thread(target=Pyqt5_Serial().plot_start())
-    add_thread3.start()
-    add_thread4 = threading.Thread(target=Pyqt5_Serial().pose_estimation_3d())
-    add_thread4.start()
 
     sys.exit(app.exec_())
